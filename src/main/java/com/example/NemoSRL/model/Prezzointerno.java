@@ -13,11 +13,6 @@ public class Prezzointerno {
     @EmbeddedId
     private PrezzointernoId id;
 
-    @MapsId("prodotto")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "prodotto", nullable = false)
-    private Prodotto prodotto;
-
     @Column(name = "valore")
     private Double valore;
 

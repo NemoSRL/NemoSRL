@@ -32,10 +32,6 @@ public class Ordineinuscita {
     @Column(name = "tracciamento", length = Integer.MAX_VALUE)
     private String tracciamento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "referenteazienda")
-    private Referenteaziendale referenteazienda;
-
     @Column(name = "indirizzoconsegna", length = Integer.MAX_VALUE)
     private String indirizzoconsegna;
 

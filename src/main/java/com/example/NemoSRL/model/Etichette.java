@@ -36,18 +36,4 @@ public class Etichette {
     @JoinColumn(name = "prenotazione")
     private Cliente prenotazione;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Posizione posizione;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Vendita vendita;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ordineinuscita")
-    private Ordineinuscita ordineinuscita;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prodotto")
-    private Prodotto prodotto;
-
 }

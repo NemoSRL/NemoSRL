@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @Getter
 @Setter
 @Entity
@@ -26,11 +23,5 @@ public class Prodotticonfezionamento {
 
     @Column(name = "sogliaminima")
     private Integer sogliaminima;
-
-    @ManyToMany
-    @JoinTable(name = "r9",
-            joinColumns = @JoinColumn(name = "confezione"),
-            inverseJoinColumns = @JoinColumn(name = "prodotto"))
-    private Set<Prodotto> prodottos = new LinkedHashSet<>();
 
 }

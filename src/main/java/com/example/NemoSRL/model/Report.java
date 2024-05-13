@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -31,8 +29,5 @@ public class Report {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personale")
     private Personale personale;
-
-    @OneToMany(mappedBy = "report")
-    private Set<Smaltimenti> smaltimentis = new LinkedHashSet<>();
 
 }

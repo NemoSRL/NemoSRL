@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @Getter
 @Setter
 @Entity
@@ -21,8 +18,5 @@ public class Posizione {
 
     @Column(name = "sogliaminima")
     private Double sogliaminima;
-
-    @OneToMany(mappedBy = "posizione")
-    private Set<Etichette> etichettes = new LinkedHashSet<>();
 
 }

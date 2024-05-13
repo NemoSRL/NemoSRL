@@ -1,11 +1,11 @@
 package com.example.NemoSRL.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name = "azienda")
 public class Azienda {
     @Id
-    @SequenceGenerator(name = "azienda_id_gen", sequenceName = "qualità_column_name_seq", allocationSize = 1)
     @Column(name = "piva", nullable = false, length = Integer.MAX_VALUE)
     private String piva;
 
@@ -28,8 +27,5 @@ public class Azienda {
 
     @Column(name = "citta", length = Integer.MAX_VALUE)
     private String citta;
-
-    @OneToMany(mappedBy = "azienda")
-    private Set<Referenteaziendale> referenteaziendales = new LinkedHashSet<>();
 
 }
