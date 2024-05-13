@@ -38,4 +38,8 @@ public class Ordineinuscita {
     @Column(name = "corriere", length = 16)
     private String corriere;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "referenteazienda")
+    private Referenteaziendale referenteazienda;
+
 }
