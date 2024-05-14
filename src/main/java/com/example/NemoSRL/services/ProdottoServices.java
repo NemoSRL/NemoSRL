@@ -35,4 +35,7 @@ public class ProdottoServices {
         Prodotto result= prodottoRepository.save(prodotto);
         return result;
     }
+    public void eliminaProdottoPerId(int prodotto){
+         prodottoRepository.deleteById(prodotto);
+    }
 }

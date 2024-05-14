@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
     public List<Prodotto> findAllByNome(String nome);
+    public void deleteById(int id);
+
 }

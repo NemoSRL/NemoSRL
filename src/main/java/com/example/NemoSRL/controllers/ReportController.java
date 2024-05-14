@@ -1,7 +1,7 @@
 package com.example.NemoSRL.controllers;
 
-import com.example.NemoSRL.model.Etichette;
-import com.example.NemoSRL.services.EtichetteServices;
+import com.example.NemoSRL.model.Report;
+import com.example.NemoSRL.services.ReportServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,16 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/report")
 @CrossOrigin
-@RequestMapping("/etichette")
-public class EtichetteController {
+public class ReportController {
     @Autowired
-    private EtichetteServices etichetteServices;
-
+    private ReportServices reportServices;
     @GetMapping
-    public List<Etichette> getAll(){
-        return etichetteServices.showAllEtichets();
+    public List<Report> getAll(){
+        return reportServices.showAllreports();
     }
-
-
 }
