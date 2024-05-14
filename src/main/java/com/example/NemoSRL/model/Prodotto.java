@@ -24,4 +24,7 @@ public class Prodotto {
     @Column(name = "quantita")
     private Double quantita;
 
+    @Column(name = "qualita", length = Integer.MAX_VALUE)
+    private String qualita;
+
 }

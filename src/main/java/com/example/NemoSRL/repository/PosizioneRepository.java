@@ -15,12 +15,12 @@ public interface PosizioneRepository extends JpaRepository<Posizione, PosizioneI
     List<Posizione> findAll();
 
 
-    List<Posizione> findById(Iterable<PosizioneId> posizioneIds);
+    //List<Posizione> findById(int np);
     List<Posizione> findPosizioneByTipo(String tipo);
 
-    @Query( "SELECT codice  " +
+   /* @Query( "SELECT codice  " +
             "FROM Etichette e,Prodotto p " +
             "WHERE e.prodotto.id=p.id AND" +
             " p.qualita=?1 AND e.posizione.id=?2")//qualita non c'e
-    List<Etichette> searcTipologiaDiQualita(String qualita, int pos);
+    List<Etichette> searcTipologiaDiQualita(String qualita, int pos);*/
 }
