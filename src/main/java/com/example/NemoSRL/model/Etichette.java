@@ -1,10 +1,13 @@
 package com.example.NemoSRL.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,6 +41,7 @@ public class Etichette {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumns({
             @JoinColumn(name = "posizioneid", referencedColumnName = "id"),
             @JoinColumn(name = "posizionenp", referencedColumnName = "np")
@@ -57,5 +61,8 @@ public class Etichette {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prodotto")
     private Prodotto prodotto;
+
+    @OneToMany(mappedBy = "etichetta")
+    private Set<Report> reports = new LinkedHashSet<>();
 
 }

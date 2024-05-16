@@ -17,7 +17,7 @@ public class PosizioneId implements Serializable {
     private static final long serialVersionUID = -3409521670328153133L;
     @ColumnDefault("nextval('posizione_id_seq'::regclass)")
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private String id;
 
     @ColumnDefault("nextval('posizione_np_seq'::regclass)")
     @Column(name = "np", nullable = false)

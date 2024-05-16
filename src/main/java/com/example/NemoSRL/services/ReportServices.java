@@ -19,14 +19,12 @@ public class ReportServices {
     public List<Report> showAllreports(){
         return reportRepository.findAll();
     }
-    public List<Report> showAllAvanzato(){
 
-    }
-    public Report addProdotto(Report report) throws Exception{
+    public Report addReport(Report report) throws Exception{
         Report result= reportRepository.save(report);
         return result;
     }
-    public void eliminaProdottoPerId(Integer ip,Integer etichetta_id){
+    public void eliminaReportPerId(Integer ip,Integer etichetta_id){
         reportRepository.deleteById_NpOrId_Etichetta(ip,etichetta_id);
     }
     public List<Report> showAllAvanzato(String cf_personale,String dettagli,Integer np,Integer etichetta){
