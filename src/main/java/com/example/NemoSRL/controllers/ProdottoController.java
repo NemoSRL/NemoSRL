@@ -26,7 +26,10 @@ public class ProdottoController {
     @GetMapping
     public List<Prodotto> getAll(){
         return prodottoServices.showAllProducts();
-
+    }
+    @GetMapping("/id")
+    public List<Integer> getAllIds(){
+        return prodottoServices.showAllProductsIds();
     }
     @PutMapping
     public ResponseEntity create(@RequestBody Prodotto prod){
@@ -47,5 +50,12 @@ public class ProdottoController {
         }catch (EntityNotFoundException e){
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping
+    @RequestMapping("/ricerca")
+    public List<Prodotto> ricerca(@RequestParam(required = false)Integer id,
+                                  @RequestParam(required = false)String qualita,
+                                  @RequestParam(required = false)String nome){
+        return prodottoServices.showAllAvanzato(id,qualita,nome);
     }
 }

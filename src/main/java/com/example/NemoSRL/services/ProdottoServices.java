@@ -11,7 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdottoServices {
@@ -28,6 +30,12 @@ public class ProdottoServices {
             return new ArrayList<>();
         }
     }
+    public List<Integer> showAllProductsIds(){
+        List<Integer> prodottiId = prodottoRepository.findAll().stream()
+                .map(Prodotto::getId)
+                .collect(Collectors.toList());
+        return prodottiId;
+    }
     public List<Prodotto> showAllProducts(){
         return prodottoRepository.findAll();
     }
@@ -37,5 +45,8 @@ public class ProdottoServices {
     }
     public void eliminaProdottoPerId(int prodotto){
          prodottoRepository.deleteById(prodotto);
+    }
+    public List<Prodotto>showAllAvanzato(Integer id,String qualita,String nome){
+        return prodottoRepository.richercaAvanzata(nome,qualita,id);
     }
 }

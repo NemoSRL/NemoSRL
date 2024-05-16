@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface OrdineinuscitaRepository extends JpaRepository<Ordineinuscita, Integer> {
-   // List<Ordineinuscita> findByDataconsegnaOrOrderByAsc(Date data);
+
     List<Ordineinuscita> findById(int codice);
     //List<Ordineinuscita> findByReferenteazienda(String cf);
 }
