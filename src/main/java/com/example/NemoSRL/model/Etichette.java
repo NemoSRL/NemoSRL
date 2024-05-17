@@ -1,8 +1,6 @@
 package com.example.NemoSRL.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +41,7 @@ public class Etichette {
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JsonIgnore
+    //@JsonBackReference
     @JoinColumns({
             @JoinColumn(name = "posizioneid", referencedColumnName = "id"),
             @JoinColumn(name = "posizionenp", referencedColumnName = "np")
@@ -67,5 +65,9 @@ public class Etichette {
     @JsonIgnore
     @OneToMany(mappedBy = "etichetta")
     private Set<Report> reports = new LinkedHashSet<>();
+    @JsonProperty("posizioneid")
+    public String getPosizione(){
+        return (posizione != null) ? posizione.getId().getId() : null;
+    }
 
 }
