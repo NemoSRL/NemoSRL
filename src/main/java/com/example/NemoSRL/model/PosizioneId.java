@@ -25,6 +25,8 @@ public class PosizioneId implements Serializable {
     @Column(name = "np", nullable = false)
     private Integer np;
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

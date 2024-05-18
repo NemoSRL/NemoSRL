@@ -1,5 +1,6 @@
 package com.example.NemoSRL.controllers;
 
+import com.example.NemoSRL.DTO.EtichettaDTO;
 import com.example.NemoSRL.model.Etichette;
 import com.example.NemoSRL.model.Prodotto;
 import com.example.NemoSRL.services.EtichetteServices;
@@ -21,8 +22,8 @@ public class EtichetteController {
     private EtichetteServices etichetteServices;
 
     @GetMapping
-    public List<Etichette> getAll(){
-        return etichetteServices.showAllEtichets();
+    public List<EtichettaDTO> getAll(){
+        return etichetteServices.showAll();
     }
     @GetMapping("/ricerca")
     public List<Etichette> getAllAvanzato(@RequestParam(required = false)Integer id,
