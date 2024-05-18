@@ -1,7 +1,8 @@
 package com.example.NemoSRL.controllers;
 
-import com.example.NemoSRL.model.Cliente;
-import com.example.NemoSRL.services.ClienteServices;
+import com.example.NemoSRL.DTO.VenditaDTO;
+import com.example.NemoSRL.model.Vendita;
+import com.example.NemoSRL.services.VenditaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clienti")
+@RequestMapping("/vendite")
 @CrossOrigin
-public class ClientiController {
+public class VenditaController {
     @Autowired
-    private ClienteServices clienteServices;
-    @RequestMapping("/referenti")
+    VenditaService venditaService;
     @GetMapping
-    public List<String> getAllReferentiCf(){
-        return clienteServices.showAllReferentiCf();
+    public List<VenditaDTO> getAll() {
+        return venditaService.getAllVendite();
     }
-    @GetMapping
-    List<Cliente> getAllClienti(){
-        return clienteServices.showAllClienti();
-    }
+
 }

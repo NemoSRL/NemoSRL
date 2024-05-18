@@ -42,11 +42,19 @@ public class EtichetteController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PutMapping
+    @PostMapping
     public ResponseEntity create(@RequestBody Etichette e){
         try{
-            return new ResponseEntity<>(etichetteServices.showAllEtichets().add(e), HttpStatus.OK);
+            return new ResponseEntity<>(etichetteServices.addEtichetta(e), HttpStatus.OK);
         } catch (Exception ex){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",ex);
+        }
+    }
+    @PutMapping
+    public ResponseEntity update(@RequestBody Etichette e){
+        try{
+            return new ResponseEntity<>(etichetteServices.updateEtichetta(e), HttpStatus.OK);
+        }catch (Exception ex){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",ex);
         }
     }

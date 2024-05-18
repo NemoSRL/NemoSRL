@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Embeddable
+@ToString
 public class ReportId implements Serializable {
     private static final long serialVersionUID = -1904614981309198374L;
     @ColumnDefault("nextval('report_np_seq'::regclass)")

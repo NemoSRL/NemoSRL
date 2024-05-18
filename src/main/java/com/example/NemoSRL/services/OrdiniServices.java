@@ -13,12 +13,10 @@ import java.util.stream.Collectors;
 public class OrdiniServices {
     @Autowired
     private OrdineinuscitaRepository ordineinuscitaRepository;
-    public List<Integer> showAllOrdiniIds(){
-              List<Integer> ordiniIds = ordineinuscitaRepository.findAll()
-                     .stream()
-                     .map(Ordineinuscita::getId)
-                     .collect(Collectors.toList());
-              return ordiniIds;
+    public List<Ordineinuscita> getAll(){
+              return ordineinuscitaRepository.findAll();
+
+
     }
 
 }

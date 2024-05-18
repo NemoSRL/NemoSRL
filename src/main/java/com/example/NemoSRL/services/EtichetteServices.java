@@ -25,4 +25,5 @@ public class EtichetteServices {
     public Etichette addEtichetta(Etichette e){
         return etichetteRepository.save(e);
     }
+    public Etichette updateEtichetta(Etichette e){return etichetteRepository.save(e);}
 }

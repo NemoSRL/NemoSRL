@@ -28,8 +28,8 @@ public class Cliente {
     @Column(name = "email", length = Integer.MAX_VALUE)
     private String email;
 
-    @Column(name = "\"età\"")
-    private Integer età;
+    @Column(name = "eta")
+    private Integer eta;
 
     @Column(name = "sesso", length = Integer.MAX_VALUE)
     private String sesso;

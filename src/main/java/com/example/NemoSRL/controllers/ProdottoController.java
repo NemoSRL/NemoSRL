@@ -31,7 +31,7 @@ public class ProdottoController {
     public List<Integer> getAllIds(){
         return prodottoServices.showAllProductsIds();
     }
-    @PutMapping
+    @PostMapping
     public ResponseEntity create(@RequestBody Prodotto prod){
         try{
             return new ResponseEntity<>(prodottoServices.addProdotto(prod), HttpStatus.OK);
@@ -57,5 +57,13 @@ public class ProdottoController {
                                   @RequestParam(required = false)String qualita,
                                   @RequestParam(required = false)String nome){
         return prodottoServices.showAllAvanzato(id,qualita,nome);
+    }
+    @PutMapping
+    public ResponseEntity update(@RequestBody Prodotto prod){
+        try{
+            return new ResponseEntity<>(prodottoServices.addProdotto(prod), HttpStatus.OK);
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",e);
+        }
     }
 }
