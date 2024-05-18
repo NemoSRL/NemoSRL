@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,8 @@ public interface EtichetteRepository extends JpaRepository<Etichette, Integer> {
             "(e.dataarrivo =?4 or ?4 is null ) and " +
             "(e.ordineinuscita.id = ?5 or ?5 is null ) and" +
             "(e.venditadata = ?6 or ?6 is null )")
-    public List<Etichette> fidnAvanzato(Integer id,Integer prod_id,String posizione,Date data_Arrivo,Integer ordine,Integer vendita);
+    public List<Etichette> fidnAvanzato(Integer id, Integer prod_id, String posizione, LocalDate data_Arrivo, Integer ordine, Integer vendita);
+    public List<Etichette> findEtichettesByDataarrivo(LocalDate data);
     public void deleteById(Integer id);
+    public Etichette findEtichetteById(Integer id);
 }

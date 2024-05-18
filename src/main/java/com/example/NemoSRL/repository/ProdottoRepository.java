@@ -15,8 +15,10 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
             "from Prodotto p "+
             "WHERE (p.nome like ?1 Or ?1 is NULL) and "+
             "(p.qualita like ?2 or ?2 is null) and" +
-            "(p.id = ?3 or ?3 is null ) "
+            "(p.id = ?3 or ?3 is null ) and" +
+            "(p.quantita = ?4 or ?4 is null) "
             )
-    public List<Prodotto> richercaAvanzata(String nome,String qualita,Integer id);
+    public List<Prodotto> richercaAvanzata(String nome,String qualita,Integer id,Integer quantita);
+    public Prodotto findProdottoById(Integer id);
 
 }

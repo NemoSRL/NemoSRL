@@ -6,11 +6,13 @@ import com.example.NemoSRL.model.Prodotto;
 import com.example.NemoSRL.services.EtichetteServices;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +31,14 @@ public class EtichetteController {
     public List<Etichette> getAllAvanzato(@RequestParam(required = false)Integer id,
                                           @RequestParam(required = false)Integer prod_id,
                                           @RequestParam(required = false)String posizione,
-                                          @RequestParam(required = false)Date data_Arrivo,
+                                          @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data_Arrivo,
                                           @RequestParam(required = false)Integer ordine,
                                           @RequestParam(required = false)Integer vendita){
         return etichetteServices.showAvanzato(id,prod_id,posizione,data_Arrivo,ordine,vendita);
+    }
+    @GetMapping("/ricerca/{data}")
+    public List<EtichettaDTO> ricercaPerData(LocalDate date){
+        return etichetteServices.ricercaPerData(date);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity eliminaEtichetta(@PathVariable int id){
@@ -42,6 +48,14 @@ public class EtichetteController {
         }catch (EntityNotFoundException e){
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/{id}")
+    public EtichettaDTO ricercaPerId(@PathVariable Integer id){
+        return etichetteServices.showEtichettaById(id);
+    }
+    @GetMapping("/ricercaPer/{data}")
+    public List<EtichettaDTO> recercaPerData(@PathVariable LocalDate data){
+        return etichetteServices.ricercaPerData(data);
     }
     @PostMapping
     public ResponseEntity create(@RequestBody Etichette e){

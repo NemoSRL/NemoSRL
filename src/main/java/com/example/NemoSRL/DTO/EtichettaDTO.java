@@ -20,6 +20,5 @@ public class EtichettaDTO {
     private Double scontoextra;
     private String posizioneid;
     private Integer posizionenp;
-    private String prenotazione;
     private String posizionetipo;
 }

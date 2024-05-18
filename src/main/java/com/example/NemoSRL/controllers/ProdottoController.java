@@ -55,8 +55,13 @@ public class ProdottoController {
     @RequestMapping("/ricerca")
     public List<Prodotto> ricerca(@RequestParam(required = false)Integer id,
                                   @RequestParam(required = false)String qualita,
-                                  @RequestParam(required = false)String nome){
-        return prodottoServices.showAllAvanzato(id,qualita,nome);
+                                  @RequestParam(required = false)String nome,
+                                  @RequestParam(required = false)Integer quantita){
+        return prodottoServices.showAllAvanzato(id,qualita,nome,quantita);
+    }
+    @GetMapping("/{id}")
+    public Prodotto ricercaPerId(@PathVariable Integer id){
+        return prodottoServices.showById(id);
     }
     @PutMapping
     public ResponseEntity update(@RequestBody Prodotto prod){

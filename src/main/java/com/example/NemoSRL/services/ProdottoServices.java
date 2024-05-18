@@ -46,8 +46,11 @@ public class ProdottoServices {
     public void eliminaProdottoPerId(int prodotto){
          prodottoRepository.deleteById(prodotto);
     }
-    public List<Prodotto>showAllAvanzato(Integer id,String qualita,String nome){
-        return prodottoRepository.richercaAvanzata(nome,qualita,id);
+    public List<Prodotto>showAllAvanzato(Integer id,String qualita,String nome,Integer quantita){
+        return prodottoRepository.richercaAvanzata(nome,qualita,id,quantita);
+    }
+    public Prodotto showById(Integer id){
+        return prodottoRepository.findProdottoById(id);
     }
     public Prodotto updateProdotto(Prodotto prodotto){
         return prodottoRepository.save(prodotto);
