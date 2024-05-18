@@ -69,5 +69,9 @@ public class Etichette {
     public String getPosizione(){
         return (posizione != null) ? posizione.getId().getId() : null;
     }
+    @JsonProperty("posizionenp")
+    public Integer getPosizioneNp(){
+        return (posizione != null) ? posizione.getId().getNp() : null;
+    }
 
 }
