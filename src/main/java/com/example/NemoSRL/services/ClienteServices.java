@@ -29,5 +29,8 @@ public class ClienteServices {
                 .collect(Collectors.toList());
         return cfReferente;
     }
+    public List<Cliente> showAllClienti(){
+        return clienteRepository.findAll();
+    }
 
 }

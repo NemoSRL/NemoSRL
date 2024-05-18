@@ -49,4 +49,7 @@ public class ProdottoServices {
     public List<Prodotto>showAllAvanzato(Integer id,String qualita,String nome){
         return prodottoRepository.richercaAvanzata(nome,qualita,id);
     }
+    public Prodotto updateProdotto(Prodotto prodotto){
+        return prodottoRepository.save(prodotto);
+    }
 }

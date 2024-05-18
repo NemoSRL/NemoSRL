@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Personale {
     @Id
     @SequenceGenerator(name = "personale_id_gen", sequenceName = "ordineinuscita_codice_seq", allocationSize = 1)
-    @Column(name = "cf", nullable = false, length = Integer.MAX_VALUE)
+    @Column(name = "cf", length = Integer.MAX_VALUE)
     private String cf;
 
     @Column(name = "nome", length = Integer.MAX_VALUE)

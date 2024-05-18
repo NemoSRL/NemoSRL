@@ -1,7 +1,7 @@
 package com.example.NemoSRL.controllers;
 
-import com.example.NemoSRL.model.Ordineinuscita;
-import com.example.NemoSRL.services.OrdiniServices;
+import com.example.NemoSRL.DTO.PosizioneDTO;
+import com.example.NemoSRL.services.PosizioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ordini")
-@CrossOrigin
-public class OrdineController {
+@RequestMapping("/posizioni")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class PosizioneController {
     @Autowired
-    private OrdiniServices ordiniServices;
+    private PosizioneService posizioneService;
     @GetMapping
-    public List<Ordineinuscita> getAll(){
-        return ordiniServices.getAll();
+    public List<PosizioneDTO> getAll(){
+        return posizioneService.getAllPosizioni();
     }
 }
