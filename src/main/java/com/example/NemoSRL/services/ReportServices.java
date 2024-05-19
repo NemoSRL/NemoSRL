@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,13 +20,39 @@ import java.util.stream.Collectors;
 public class ReportServices {
     @Autowired
     private ReportRepository reportRepository;
+    @Autowired
+    private EtichetteRepository etichetteRepository;
+    @Autowired
+    private PersonaleRepository personaleRepository;
 
-    public List<Report> showAllreports(){
-        return reportRepository.findAll();
+    public List<ReportDTO> showAllreports(){
+        List<ReportDTO> ret = new ArrayList<>();
+        for(Report r : reportRepository.findAll()){
+            ret.add(map(r));
+        }
+        return ret;
     }
 
-    public Report addReport(ReportDTO report) throws Exception{
-        return updateReport(report);
+    public Report addReport(ReportDTO reportDTO) throws Exception{
+        ReportId reportId = new ReportId();
+        reportId.setEtichetta(reportDTO.getEtichetta());
+        reportId.setNp(reportDTO.getNp());
+        Report report = new Report();
+        report.setId(reportId);
+        report.setData(reportDTO.getData());
+        report.setDettagli(reportDTO.getDettagli());
+
+        if (reportDTO.getEtichetta() != null) {
+            Optional<Etichette> etichette = etichetteRepository.findById(reportDTO.getEtichetta());
+            etichette.ifPresent(report::setEtichetta);
+        }
+
+        if (reportDTO.getPersonale() != null) {
+            Optional<Personale> personale = personaleRepository.findById(reportDTO.getPersonale());
+            personale.ifPresent(report::setPersonale);
+        }
+
+        return reportRepository.save(report);
     }
     public List<ReportDTO> ricercaPerData(LocalDate data){
         return reportRepository.findReportByData(data).stream().map(this::map).collect(Collectors.toList());
@@ -39,25 +66,21 @@ public class ReportServices {
     public Etichette etichettaDelReport(Integer np, Integer etichetta){
         return reportRepository.richercaEtichetta(np,etichetta);
     }
-    @Autowired
-    private EtichetteRepository etichetteRepository;
 
-    @Autowired
-    private PersonaleRepository personaleRepository;
 
     @Transactional
-
     public Report updateReport(ReportDTO reportDTO) {
             ReportId reportId = new ReportId();
             reportId.setNp(reportDTO.getNp());
-            reportId.setEtichetta(reportDTO.getEtichetta());
+            reportId.setEtichetta(reportDTO.getOldEtichetta());
 
-            Optional<Report> optionalReport = reportRepository.findById(reportId);
-            if (!optionalReport.isPresent()) {
-                throw new RuntimeException("Report not found");
+
+
+            Report report = new Report();
+            if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta() && reportDTO.getOldEtichetta()!=null){
+                report.getId().setNp(-1);
             }
-
-            Report report = optionalReport.get();
+            report.getId().setEtichetta(reportDTO.getEtichetta());
             report.setData(reportDTO.getData());
             report.setDettagli(reportDTO.getDettagli());
 

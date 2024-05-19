@@ -1,13 +1,8 @@
 package com.example.NemoSRL.services;
 
 import com.example.NemoSRL.DTO.EtichettaDTO;
-import com.example.NemoSRL.model.Etichette;
-import com.example.NemoSRL.model.Posizione;
-import com.example.NemoSRL.model.PosizioneId;
-import com.example.NemoSRL.repository.EtichetteRepository;
-import com.example.NemoSRL.repository.OrdineinuscitaRepository;
-import com.example.NemoSRL.repository.PosizioneRepository;
-import com.example.NemoSRL.repository.ProdottoRepository;
+import com.example.NemoSRL.model.*;
+import com.example.NemoSRL.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +23,8 @@ public class EtichetteServices {
     private ProdottoRepository prodottoRepository;
     @Autowired
     private OrdineinuscitaRepository ordineinuscitaRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     public List<Etichette> showAllEtichets(){
          return etichetteRepository.findAll();
@@ -39,9 +37,29 @@ public class EtichetteServices {
     }
     public Etichette addEtichetta(EtichettaDTO e){
         Etichette r = new Etichette();
-        Posizione pos = posizioneRepository.findById_IdAndId_Np(e.getPosizioneid(), e.getPosizionenp());
+        if(!(e.getPosizioneid() == null || e.getPosizionenp() == null)) {
+            Posizione pos = posizioneRepository.findById_IdAndId_Np(e.getPosizioneid(), e.getPosizionenp());
+            r.setPosizione(pos);
+        }
+        if(!(e.getVenditadata()==null || e.getVenditanp() == null)){
+            r.setVenditadata(e.getVenditadata());
+            r.setVenditanp(e.getVenditanp());
+        }
+        if (e.getOrdineUscita() != null) {
+            Optional<Ordineinuscita> ordineinuscita = ordineinuscitaRepository.findById(e.getOrdineUscita());
+            ordineinuscita.ifPresent(r::setOrdineinuscita);
+        }
 
-        r.setPosizione(pos);
+        if (e.getProdotto() != null) {
+            Optional<Prodotto> prodotto = prodottoRepository.findById(e.getProdotto());
+            prodotto.ifPresent(r::setProdotto);
+        }
+        if (e.getPrenotazione() != null) {
+            Optional<Cliente> cliente = clienteRepository.findById(e.getPrenotazione());
+            cliente.ifPresent(r::setPrenotazione);
+        }
+
+
 
         r.setProdotto(prodottoRepository.findProdottoById(e.getProdotto()));
         r.setId(e.getId());

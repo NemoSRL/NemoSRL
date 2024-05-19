@@ -69,9 +69,9 @@ public class EtichetteController {
         }
     }
     @PutMapping
-    public ResponseEntity update(@RequestBody Etichette e){
+    public ResponseEntity update(@RequestBody EtichettaDTO e){
         try{
-            return new ResponseEntity<>(etichetteServices.updateEtichetta(e), HttpStatus.OK);
+            return new ResponseEntity<>(etichetteServices.addEtichetta(e), HttpStatus.OK);
         }catch (Exception ex){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",ex);
         }

@@ -26,4 +26,5 @@ public class VenditaService {
         dto.setTipologia(vendita.getTipologia());
         return dto;
     }
+
 }

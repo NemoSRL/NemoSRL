@@ -21,4 +21,5 @@ public class EtichettaDTO {
     private String posizioneid;
     private Integer posizionenp;
     private String posizionetipo;
+    private String prenotazione;
 }

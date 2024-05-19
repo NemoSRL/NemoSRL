@@ -15,4 +15,5 @@ public class ReportDTO {
     private LocalDate data;
     private String dettagli;
     private String personale;
+    private Integer oldEtichetta;
 }

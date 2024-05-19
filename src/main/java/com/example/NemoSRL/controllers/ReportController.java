@@ -26,7 +26,7 @@ public class ReportController {
     private ProdottoRepository prodottoRepository;
 
     @GetMapping
-    public List<Report> getAll() {
+    public List<ReportDTO> getAll() {
         return reportServices.showAllreports();
     }
 
@@ -46,7 +46,7 @@ public class ReportController {
     @PostMapping
     public ResponseEntity create(@RequestBody ReportDTO report) {
         try {
-            return new ResponseEntity<>(reportServices.updateReport(report), HttpStatus.OK);
+            return new ResponseEntity<>(reportServices.addReport(report), HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore", e);
         }
