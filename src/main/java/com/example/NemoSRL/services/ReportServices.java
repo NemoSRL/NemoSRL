@@ -1,5 +1,6 @@
 package com.example.NemoSRL.services;
 
+import com.example.NemoSRL.DTO.EtichettaDTO;
 import com.example.NemoSRL.DTO.ReportDTO;
 import com.example.NemoSRL.model.*;
 import com.example.NemoSRL.repository.EtichetteRepository;
@@ -25,6 +26,9 @@ public class ReportServices {
 
     public Report addReport(ReportDTO report) throws Exception{
         return updateReport(report);
+    }
+    public List<ReportDTO> ricercaPerData(LocalDate data){
+        return reportRepository.findReportByData(data).stream().map(this::map).collect(Collectors.toList());
     }
     public void eliminaReportPerId(Integer ip,Integer etichetta_id){
         reportRepository.deleteById_NpOrId_Etichetta(ip,etichetta_id);
@@ -69,5 +73,14 @@ public class ReportServices {
 
             return reportRepository.save(report);
 
+    }
+    private ReportDTO map(Report r){
+        ReportDTO ret = new ReportDTO();
+        ret.setData(r.getData());
+        ret.setDettagli(r.getDettagli());
+        ret.setPersonale(r.getPersonale().getCf());
+        ret.setNp(r.getId().getNp());
+        ret.setEtichetta(r.getEtichetta().getId());
+        return ret;
     }
 }

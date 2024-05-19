@@ -27,4 +27,5 @@ public interface ReportRepository extends JpaRepository<Report, ReportId> {
 
     )
     public Etichette richercaEtichetta(Integer id_report, Integer id_etichetta);
+    public  List<Report> findReportByData(LocalDate date);
 }
