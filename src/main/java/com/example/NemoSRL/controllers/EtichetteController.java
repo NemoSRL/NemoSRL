@@ -33,8 +33,11 @@ public class EtichetteController {
                                           @RequestParam(required = false)String posizione,
                                           @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data_Arrivo,
                                           @RequestParam(required = false)Integer ordine,
-                                          @RequestParam(required = false)Integer vendita){
-        return etichetteServices.showAvanzato(id,prod_id,posizione,data_Arrivo,ordine,vendita);
+                                          @RequestParam(required = false)Integer vendita,
+                                             @RequestParam(required = false) Integer peso,
+                                             @RequestParam(required = false) String descrizione,
+                                             @RequestParam(required = false) String prenotazione){
+        return etichetteServices.showAvanzato(id,prod_id,posizione,data_Arrivo,ordine,vendita, peso, descrizione, prenotazione);
     }
     @GetMapping("/ricerca/{data}")
     public List<EtichettaDTO> ricercaPerData(LocalDate date){

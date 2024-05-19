@@ -33,6 +33,7 @@ public class Report {
     private String dettagli;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "personale")
     private Personale personale;
 

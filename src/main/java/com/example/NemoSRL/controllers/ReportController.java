@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,38 +26,49 @@ public class ReportController {
     private ProdottoRepository prodottoRepository;
 
     @GetMapping
-    public List<Report> getAll(){
+    public List<Report> getAll() {
         return reportServices.showAllreports();
     }
+
     @GetMapping
     @RequestMapping("/ricerca")
-    public List<Report>ricerca(@RequestParam(name = "Cf_personale") String cf_personale,@RequestParam(name = "dettagli") String dettagli, @RequestParam(name ="id") Integer np, @RequestParam(name = "etichetta") Integer etichetta){
-        return reportServices.showAllAvanzato(cf_personale,dettagli,np,etichetta);
+    public List<Report> ricerca(@RequestParam(name = "cf_personale", required = false) String cf_personale,
+                                @RequestParam(name = "dettagli", required = false) String dettagli,
+                                @RequestParam(name = "id", required = false) Integer np,
+                                @RequestParam(name = "etichetta", required = false) Integer etichetta,
+                                @RequestParam(name="data", required = false) String data ){
+        String[] d=data.split("-");
+        LocalDate date = LocalDate.of(Integer.parseInt(d[0]), Integer.parseInt(d[1]), Integer.parseInt(d[2]));
+        System.out.println(date + " " + date.getClass().getName());
+        return reportServices.showAllAvanzato(cf_personale, dettagli, np, etichetta, date);
     }
+
     @PostMapping
-    public ResponseEntity create(@RequestBody ReportDTO report){
-        try{
+    public ResponseEntity create(@RequestBody ReportDTO report) {
+        try {
             return new ResponseEntity<>(reportServices.updateReport(report), HttpStatus.OK);
-        } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore", e);
         }
     }
+
     @DeleteMapping("/elimina")
-    public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id,@RequestParam(name = "Etichetta")Integer etichetta){
-        try{
-           reportServices.eliminaReportPerId(id,etichetta);
+    public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id, @RequestParam(name = "Etichetta") Integer etichetta) {
+        try {
+            reportServices.eliminaReportPerId(id, etichetta);
             return ResponseEntity.noContent().build();
-        }catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PutMapping
-    public ResponseEntity update(@RequestBody ReportDTO report){
+    public ResponseEntity update(@RequestBody ReportDTO report) {
         System.out.println(report.toString());
-        try{
+        try {
             return new ResponseEntity<>(reportServices.updateReport(report), HttpStatus.OK);
-        } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore", e);
         }
     }
 

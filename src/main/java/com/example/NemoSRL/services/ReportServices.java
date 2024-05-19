@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,8 +29,8 @@ public class ReportServices {
     public void eliminaReportPerId(Integer ip,Integer etichetta_id){
         reportRepository.deleteById_NpOrId_Etichetta(ip,etichetta_id);
     }
-    public List<Report> showAllAvanzato(String cf_personale,String dettagli,Integer np,Integer etichetta){
-        return reportRepository.richercaAvanzata(cf_personale,dettagli,np,etichetta);
+    public List<Report> showAllAvanzato(String cf_personale,String dettagli,Integer np,Integer etichetta, LocalDate data){
+        return reportRepository.ricercaAvanzata(cf_personale,dettagli,np,etichetta, data);
     }
     public Etichette etichettaDelReport(Integer np, Integer etichetta){
         return reportRepository.richercaEtichetta(np,etichetta);

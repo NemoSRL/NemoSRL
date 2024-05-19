@@ -56,8 +56,10 @@ public class ProdottoController {
     public List<Prodotto> ricerca(@RequestParam(required = false)Integer id,
                                   @RequestParam(required = false)String qualita,
                                   @RequestParam(required = false)String nome,
-                                  @RequestParam(required = false)Integer quantita){
-        return prodottoServices.showAllAvanzato(id,qualita,nome,quantita);
+                                  @RequestParam(required = false)Integer quantita,
+                                  @RequestParam(required = false)Integer sogliaMinima){
+
+        return prodottoServices.showAllAvanzato(id,qualita,nome,quantita, sogliaMinima);
     }
     @GetMapping("/{id}")
     public Prodotto ricercaPerId(@PathVariable Integer id){
