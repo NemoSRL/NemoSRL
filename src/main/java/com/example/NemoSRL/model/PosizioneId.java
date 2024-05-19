@@ -1,6 +1,7 @@
 package com.example.NemoSRL.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
@@ -18,7 +19,6 @@ public class PosizioneId implements Serializable {
     private static final long serialVersionUID = -3409521670328153133L;
     @ColumnDefault("nextval('posizione_id_seq'::regclass)")
     @Column(name = "id", nullable = false)
-
     private String id;
 
     @ColumnDefault("nextval('posizione_np_seq'::regclass)")

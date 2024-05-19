@@ -28,7 +28,7 @@ public class EtichetteController {
         return etichetteServices.showAll();
     }
     @GetMapping("/ricerca")
-    public List<Etichette> getAllAvanzato(@RequestParam(required = false)Integer id,
+    public List<EtichettaDTO> getAllAvanzato(@RequestParam(required = false)Integer id,
                                           @RequestParam(required = false)Integer prod_id,
                                           @RequestParam(required = false)String posizione,
                                           @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data_Arrivo,
@@ -58,7 +58,7 @@ public class EtichetteController {
         return etichetteServices.ricercaPerData(data);
     }
     @PostMapping
-    public ResponseEntity create(@RequestBody Etichette e){
+    public ResponseEntity create(@RequestBody EtichettaDTO e){
         try{
             return new ResponseEntity<>(etichetteServices.addEtichetta(e), HttpStatus.OK);
         } catch (Exception ex){
@@ -73,6 +73,4 @@ public class EtichetteController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Errore",ex);
         }
     }
-
-
 }

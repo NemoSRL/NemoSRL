@@ -5,7 +5,9 @@ import com.example.NemoSRL.model.Etichette;
 import com.example.NemoSRL.model.Posizione;
 import com.example.NemoSRL.model.PosizioneId;
 import com.example.NemoSRL.repository.EtichetteRepository;
+import com.example.NemoSRL.repository.OrdineinuscitaRepository;
 import com.example.NemoSRL.repository.PosizioneRepository;
+import com.example.NemoSRL.repository.ProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,17 +23,37 @@ public class EtichetteServices {
     private EtichetteRepository etichetteRepository;
     @Autowired
     private PosizioneRepository posizioneRepository;
+    @Autowired
+    private ProdottoRepository prodottoRepository;
+    @Autowired
+    private OrdineinuscitaRepository ordineinuscitaRepository;
+
     public List<Etichette> showAllEtichets(){
          return etichetteRepository.findAll();
     }
-    public List<Etichette> showAvanzato(Integer id, Integer prod_id, String posizione, LocalDate data_Arrivo, Integer ordine, Integer vendita){
-       return etichetteRepository.fidnAvanzato(id,prod_id,posizione,data_Arrivo,ordine,vendita);
+    public List<EtichettaDTO> showAvanzato(Integer id, Integer prod_id, String posizione, LocalDate data_Arrivo, Integer ordine, Integer vendita){
+       return etichetteRepository.fidnAvanzato(id,prod_id,posizione,data_Arrivo,ordine,vendita).stream().map(this::mapper).collect(Collectors.toList());
     }
     public void elimina(Integer id){
         etichetteRepository.deleteById(id);
     }
-    public Etichette addEtichetta(Etichette e){
-        return etichetteRepository.save(e);
+    public Etichette addEtichetta(EtichettaDTO e){
+        Etichette r = new Etichette();
+        Posizione pos = posizioneRepository.findById_IdAndId_Np(e.getPosizioneid(), e.getPosizionenp());
+
+        r.setPosizione(pos);
+
+        r.setProdotto(prodottoRepository.findProdottoById(e.getProdotto()));
+        r.setId(e.getId());
+        r.setDataarrivo(e.getDataarrivo());
+        r.setDescrizione(e.getDescrizione());
+        r.setAbbattimento(e.getAbbattimento());
+        r.setPeso(e.getPeso());
+        r.setVenditanp(e.getVenditanp());
+        r.setVenditadata(e.getVenditadata());
+        r.setScontoextra(e.getScontoextra());
+
+        return etichetteRepository.save(r);
     }
     public Etichette updateEtichetta(Etichette e){return etichetteRepository.save(e);}
     public List<EtichettaDTO> ricercaPerData(LocalDate data){

@@ -1,6 +1,8 @@
 package com.example.NemoSRL.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -17,6 +19,7 @@ public class Posizione {
     @SequenceGenerator(name = "posizione_id_gen", sequenceName = "ordineinuscita_codice_seq", allocationSize = 1)
     @EmbeddedId
     @JsonUnwrapped
+    @JsonProperty
     private PosizioneId id;
 
     @Column(name = "tipo", length = Integer.MAX_VALUE)
@@ -27,5 +30,4 @@ public class Posizione {
 
     @OneToMany(mappedBy = "posizione")
     private Set<Etichette> etichettes = new LinkedHashSet<>();
-
 }
