@@ -13,11 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+
 import java.time.LocalDate;
-<<<<<<< Updated upstream
-import java.util.Date;
-=======
->>>>>>> Stashed changes
 import java.util.List;
 
 @RestController
