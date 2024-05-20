@@ -6,6 +6,7 @@ import com.example.NemoSRL.model.Report;
 import com.example.NemoSRL.model.ReportId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,4 +29,9 @@ public interface ReportRepository extends JpaRepository<Report, ReportId> {
     )
     public Etichette richercaEtichetta(Integer id_report, Integer id_etichetta);
     public  List<Report> findReportByData(LocalDate date);
+    @Query("SELECT MAX(r.id.np) FROM Report r WHERE r.id.etichetta = :etichetta")
+    Integer findMaxNpByEtichetta(@Param("etichetta") Integer etichetta);
+
+    @Override
+    void deleteById(ReportId reportId);
 }

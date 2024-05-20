@@ -36,7 +36,7 @@ public class ReportServices {
     public Report addReport(ReportDTO reportDTO) throws Exception{
         ReportId reportId = new ReportId();
         reportId.setEtichetta(reportDTO.getEtichetta());
-        reportId.setNp(reportDTO.getNp());
+        reportId.setNp(generateNewId(reportDTO.getEtichetta()));
         Report report = new Report();
         report.setId(reportId);
         report.setData(reportDTO.getData());
@@ -68,7 +68,7 @@ public class ReportServices {
     }
 
 
-    @Transactional
+
     public Report updateReport(ReportDTO reportDTO) {
             ReportId reportId = new ReportId();
             reportId.setNp(reportDTO.getNp());
@@ -77,10 +77,12 @@ public class ReportServices {
 
 
             Report report = new Report();
-            if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta() && reportDTO.getOldEtichetta()!=null){
-                report.getId().setNp(-1);
+            if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta() ){
+                reportRepository.deleteById(reportId);
+                reportId.setNp(generateNewId(reportDTO.getEtichetta()));
+                reportId.setEtichetta(reportDTO.getEtichetta());
             }
-            report.getId().setEtichetta(reportDTO.getEtichetta());
+            report.setId(reportId);
             report.setData(reportDTO.getData());
             report.setDettagli(reportDTO.getDettagli());
 
@@ -105,5 +107,10 @@ public class ReportServices {
         ret.setNp(r.getId().getNp());
         ret.setEtichetta(r.getEtichetta().getId());
         return ret;
+    }
+    private Integer generateNewId(Integer e){
+
+        Integer np = reportRepository.findMaxNpByEtichetta(e)+1;
+        return np;
     }
 }
