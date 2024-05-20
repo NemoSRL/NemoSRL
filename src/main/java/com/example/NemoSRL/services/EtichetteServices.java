@@ -79,7 +79,7 @@ public class EtichetteServices {
     }
 
     public List<EtichettaDTO>  showAll(){
-        return etichetteRepository.findAll().stream().map(this::mapper).collect(Collectors.toList());
+        return etichetteRepository.findAllByOrderByIdAsc().stream().map(this::mapper).collect(Collectors.toList());
     }
     public EtichettaDTO showEtichettaById(Integer id) {
         return mapper( etichetteRepository.findEtichetteById(id));

@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface EtichetteRepository extends JpaRepository<Etichette, Integer> {
+    List<Etichette> findAllByOrderByIdAsc();
     List<Etichette> findByPeso(int kg);
     List<Etichette> findByAbbattimento(boolean abattuto);
     List<Etichette> findByDataarrivo(Date data);

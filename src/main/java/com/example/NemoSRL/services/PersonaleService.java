@@ -11,5 +11,5 @@ import java.util.List;
 public class PersonaleService {
     @Autowired
     PersonaleRepository personaleRepository;
-    public List<Personale> getAll() {return personaleRepository.findAll();}
+    public List<Personale> getAll() {return personaleRepository.findAllByOrderByCfAsc();}
 }

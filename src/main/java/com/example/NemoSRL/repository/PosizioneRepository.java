@@ -13,6 +13,7 @@ import java.util.List;
 public interface PosizioneRepository extends JpaRepository<Posizione, PosizioneId> {
 
     List<Posizione> findAll();
+    List<Posizione> findAllByOrderByIdAsc();
     Posizione findById_IdAndId_Np(String id, Integer np);
 
     //List<Posizione> findById(int np);

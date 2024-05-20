@@ -14,7 +14,7 @@ public class OrdiniServices {
     @Autowired
     private OrdineinuscitaRepository ordineinuscitaRepository;
     public List<Ordineinuscita> getAll(){
-              return ordineinuscitaRepository.findAll();
+              return ordineinuscitaRepository.findAllByOrderByIdAsc();
 
 
     }

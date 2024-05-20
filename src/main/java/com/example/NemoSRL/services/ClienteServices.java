@@ -30,7 +30,7 @@ public class ClienteServices {
         return cfReferente;
     }
     public List<Cliente> showAllClienti(){
-        return clienteRepository.findAll();
+        return clienteRepository.findAllByOrderByCfAsc();
     }
 
 }

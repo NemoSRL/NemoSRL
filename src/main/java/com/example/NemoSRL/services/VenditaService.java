@@ -14,7 +14,7 @@ public class VenditaService {
     @Autowired
     private VenditaRepository venditaRepository;
     public List<VenditaDTO> getAllVendite() {
-        return venditaRepository.findAll().stream()
+        return venditaRepository.findAllByOrderByIdAsc().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }

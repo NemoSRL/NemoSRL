@@ -14,4 +14,5 @@ public interface ClienteRepository extends JpaRepository<Cliente, String> {
     List<Cliente> findByNome(String nome);
     List<Cliente> findByCognome(String cognome);
     List<Cliente> findByEta(int eta);
+    List<Cliente> findAllByOrderByCfAsc();
 }

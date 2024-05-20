@@ -15,7 +15,7 @@ public class PosizioneService {
     private PosizioneRepository posizioneRepository;
 
     public List<PosizioneDTO> getAllPosizioni() {
-        return posizioneRepository.findAll().stream()
+        return posizioneRepository.findAllByOrderByIdAsc().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }

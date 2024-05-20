@@ -37,7 +37,7 @@ public class ProdottoServices {
         return prodottiId;
     }
     public List<Prodotto> showAllProducts(){
-        return prodottoRepository.findAll();
+        return prodottoRepository.findAllByOrderByIdAsc();
     }
     public Prodotto addProdotto(Prodotto prodotto) throws Exception{
         Prodotto result= prodottoRepository.save(prodotto);

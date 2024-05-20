@@ -27,7 +27,7 @@ public class ReportServices {
 
     public List<ReportDTO> showAllreports(){
         List<ReportDTO> ret = new ArrayList<>();
-        for(Report r : reportRepository.findAll()){
+        for(Report r : reportRepository.findAllByOrderByIdAsc()){
             ret.add(map(r));
         }
         return ret;

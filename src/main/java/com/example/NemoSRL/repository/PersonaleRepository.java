@@ -11,4 +11,5 @@ public interface PersonaleRepository extends JpaRepository<Personale, String> {
     List<Personale> findPersonaleByCf(String cf);
     List<Personale> findPersonaleByRuolo(String ruolo);
     List<Personale> findPersonaleByNomeAndCognome(String name,String cognome);
+    List<Personale> findAllByOrderByCfAsc();
 }

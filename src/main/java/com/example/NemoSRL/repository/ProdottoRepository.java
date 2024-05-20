@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
     public List<Prodotto> findAllByNome(String nome);
+    public List<Prodotto> findAllByOrderByIdAsc();
     public void deleteById(int id);
     @Query("select p "+
             "from Prodotto p "+

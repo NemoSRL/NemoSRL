@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, ReportId> {
+    public List<Report> findAllByOrderByIdAsc();
     public void deleteById_NpOrId_Etichetta(Integer id_np,Integer etichetta_id);
     @Query("select r "+
             "from  Report r "+
