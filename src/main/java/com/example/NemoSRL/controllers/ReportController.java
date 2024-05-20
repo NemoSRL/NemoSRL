@@ -30,18 +30,16 @@ public class ReportController {
     public List<ReportDTO> getAll() {
         return reportServices.showAllreports();
     }
-
+    @CrossOrigin
     @GetMapping
     @RequestMapping("/ricerca")
     public List<Report> ricerca(@RequestParam(name = "cf_personale", required = false) String cf_personale,
                                 @RequestParam(name = "dettagli", required = false) String dettagli,
                                 @RequestParam(name = "id", required = false) Integer np,
-                                @RequestParam(name = "etichetta", required = false) Integer etichetta,
-                                @RequestParam(name="data", required = false) String data ){
-        String[] d=data.split("-");
-        LocalDate date = LocalDate.of(Integer.parseInt(d[0]), Integer.parseInt(d[1]), Integer.parseInt(d[2]));
-        System.out.println(date + " " + date.getClass().getName());
-        return reportServices.showAllAvanzato(cf_personale, dettagli, np, etichetta, date);
+                                @RequestParam(name = "etichetta", required = false) Integer etichetta
+                                ){
+
+        return reportServices.showAllAvanzato(cf_personale, dettagli, np, etichetta);
     }
 
     @PostMapping
@@ -72,6 +70,7 @@ public class ReportController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore", e);
         }
     }
+    @CrossOrigin
     @GetMapping("/ricercaPer/{data}")
     public List<ReportDTO> recercaPerData(@PathVariable LocalDate data){
         return reportServices.ricercaPerData(data);

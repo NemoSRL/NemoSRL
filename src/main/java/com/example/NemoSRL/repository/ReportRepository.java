@@ -19,10 +19,9 @@ public interface ReportRepository extends JpaRepository<Report, ReportId> {
             "WHERE ( r.personale.cf like ?1 Or ?1 is NULL) and "+
             "(r.dettagli like ?2 or ?2 is null) and" +
             "(r.id.np = ?3 or ?3 is null ) and " +
-            "(r.id.etichetta=?4 or ?4 is null ) and"+
-            "(r.data=?5 or ?5 is null)"
+            "(r.id.etichetta=?4 or ?4 is null )"
     )
-    public List<Report> ricercaAvanzata(String cf_personale, String dettagli, Integer np,Integer etichetta, LocalDate data);
+    public List<Report> ricercaAvanzata(String cf_personale, String dettagli, Integer np,Integer etichetta);
     @Query("select e "+
             "from  Report r, Etichette e "+
             "WHERE r.etichetta.id=?2 and  r.id=?1 "

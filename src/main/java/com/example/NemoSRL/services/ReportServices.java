@@ -60,8 +60,8 @@ public class ReportServices {
     public void eliminaReportPerId(Integer ip,Integer etichetta_id){
         reportRepository.deleteById_NpOrId_Etichetta(ip,etichetta_id);
     }
-    public List<Report> showAllAvanzato(String cf_personale,String dettagli,Integer np,Integer etichetta, LocalDate data){
-        return reportRepository.ricercaAvanzata(cf_personale,dettagli,np,etichetta, data);
+    public List<Report> showAllAvanzato(String cf_personale,String dettagli,Integer np,Integer etichetta){
+        return reportRepository.ricercaAvanzata(cf_personale,dettagli,np,etichetta);
     }
     public Etichette etichettaDelReport(Integer np, Integer etichetta){
         return reportRepository.richercaEtichetta(np,etichetta);
