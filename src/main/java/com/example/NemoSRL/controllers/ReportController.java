@@ -1,5 +1,6 @@
 package com.example.NemoSRL.controllers;
 
+import com.example.NemoSRL.DTO.EtichettaDTO;
 import com.example.NemoSRL.DTO.ReportDTO;
 import com.example.NemoSRL.model.Prodotto;
 import com.example.NemoSRL.model.Report;
@@ -12,8 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -70,6 +71,10 @@ public class ReportController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore", e);
         }
+    }
+    @GetMapping("/ricercaPer/{data}")
+    public List<ReportDTO> recercaPerData(@PathVariable LocalDate data){
+        return reportServices.ricercaPerData(data);
     }
 
 }
