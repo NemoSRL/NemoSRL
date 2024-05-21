@@ -58,7 +58,7 @@ public class Etichette {
     @JoinColumn(name = "ordineinuscita")
     private Ordineinuscita ordineinuscita;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "prodotto")
     private Prodotto prodotto;
 
