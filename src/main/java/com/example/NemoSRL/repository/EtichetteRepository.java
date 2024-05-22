@@ -26,7 +26,7 @@ public interface EtichetteRepository extends JpaRepository<Etichette, Integer> {
             "from Etichette e " +
             "WHERE (e.id=?1 or ?1 is null ) and " +
             "(e.prodotto.id =?2 or ?2 is null ) and" +
-            "(e.posizione.id.id like ?3 or ?3 is null ) and " +
+            "(e.slot.id.posId like ?3 or ?3 is null ) and " +
 
             "(e.ordineinuscita.id = ?4 or ?4 is null ) and" +
             "(e.venditadata = ?5 or ?5 is null ) and"+

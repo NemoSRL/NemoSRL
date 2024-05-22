@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class PosizioneDTO {
     private String id;
-    private int np;
+
     private String tipo;
-    private Double sogliaminima;
+    private Integer sogliaminima;
 }

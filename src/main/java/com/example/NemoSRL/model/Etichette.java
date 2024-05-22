@@ -1,6 +1,6 @@
 package com.example.NemoSRL.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.example.NemoSRL.model.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,41 +12,30 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "etichette")
+@Table(name = "etichette", schema = "public")
 public class Etichette {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "etichette_id_gen")
-    @SequenceGenerator(name = "etichette_id_gen", sequenceName = "etichette_codice_seq", allocationSize = 1)
     @Column(name = "codice", nullable = false)
     private Integer id;
-
-    @Column(name = "dataarrivo")
-    private LocalDate dataarrivo;
-
-    @Column(name = "descrizione", length = Integer.MAX_VALUE)
-    private String descrizione;
-
-    @Column(name = "peso")
-    private Double peso;
 
     @Column(name = "abbattimento")
     private Boolean abbattimento;
 
+    @Column(name = "dataarrivo")
+    private LocalDate dataarrivo;
+
+    @Column(name = "peso")
+    private Double peso;
+
     @Column(name = "scontoextra")
     private Double scontoextra;
+
+    @Column(name = "descrizione", length = Integer.MAX_VALUE)
+    private String descrizione;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prenotazione")
     private Cliente prenotazione;
-
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    //@JsonBackReference
-    @JoinColumns({
-            @JoinColumn(name = "posizioneid", referencedColumnName = "id"),
-            @JoinColumn(name = "posizionenp", referencedColumnName = "np")
-    })
-    private Posizione posizione;
 
     @Column(name = "venditanp")
     private Integer venditanp;
@@ -58,20 +47,18 @@ public class Etichette {
     @JoinColumn(name = "ordineinuscita")
     private Ordineinuscita ordineinuscita;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prodotto")
     private Prodotto prodotto;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "etichetta")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name = "slotid", referencedColumnName = "pos_id"),
+            @JoinColumn(name = "slotnp", referencedColumnName = "np")
+    })
+    private Slot slot;
+
+    @OneToMany(mappedBy = "etichette")
     private Set<Report> reports = new LinkedHashSet<>();
-    @JsonProperty("posizioneid")
-    public String getPosizione(){
-        return (posizione != null) ? posizione.getId().getId() : null;
-    }
-    @JsonProperty("posizionenp")
-    public Integer getPosizioneNp(){
-        return (posizione != null) ? posizione.getId().getNp() : null;
-    }
 
 }

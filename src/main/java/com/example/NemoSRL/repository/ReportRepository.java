@@ -1,7 +1,6 @@
 package com.example.NemoSRL.repository;
 
 import com.example.NemoSRL.model.Etichette;
-import com.example.NemoSRL.model.Prodotto;
 import com.example.NemoSRL.model.Report;
 import com.example.NemoSRL.model.ReportId;
 import org.springframework.data.jpa.repository.JpaRepository;

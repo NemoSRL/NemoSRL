@@ -1,9 +1,6 @@
 package com.example.NemoSRL.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.example.NemoSRL.model.Slot;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,20 +11,19 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "posizione")
+@Table(name = "posizione", schema = "public")
 public class Posizione {
-    @SequenceGenerator(name = "posizione_id_gen", sequenceName = "ordineinuscita_codice_seq", allocationSize = 1)
-    @EmbeddedId
-    @JsonUnwrapped
-    @JsonProperty
-    private PosizioneId id;
+    @Id
+    @Column(name = "id", nullable = false, length = Integer.MAX_VALUE)
+    private String id;
 
     @Column(name = "tipo", length = Integer.MAX_VALUE)
     private String tipo;
 
     @Column(name = "sogliaminima")
-    private Double sogliaminima;
+    private Integer sogliaminima;
 
     @OneToMany(mappedBy = "posizione")
-    private Set<Etichette> etichettes = new LinkedHashSet<>();
+    private Set<Slot> slots = new LinkedHashSet<>();
+
 }

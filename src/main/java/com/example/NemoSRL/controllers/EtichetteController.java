@@ -1,19 +1,15 @@
 package com.example.NemoSRL.controllers;
 
 import com.example.NemoSRL.DTO.EtichettaDTO;
-import com.example.NemoSRL.model.Etichette;
-import com.example.NemoSRL.model.Prodotto;
 import com.example.NemoSRL.services.EtichetteServices;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController

@@ -18,13 +18,15 @@ public class EtichetteServices {
     @Autowired
     private EtichetteRepository etichetteRepository;
     @Autowired
-    private PosizioneRepository posizioneRepository;
+    private SlotRepository slotRepository;
     @Autowired
     private ProdottoRepository prodottoRepository;
     @Autowired
     private OrdineinuscitaRepository ordineinuscitaRepository;
     @Autowired
     private ClienteRepository clienteRepository;
+    @Autowired
+    private PosizioneRepository posizioneRepository;
 
     public List<Etichette> showAllEtichets(){
          return etichetteRepository.findAll();
@@ -37,9 +39,10 @@ public class EtichetteServices {
     }
     public Etichette addEtichetta(EtichettaDTO e){
         Etichette r = new Etichette();
-        if(!(e.getPosizioneid() == null || e.getPosizionenp() == null)) {
-            Posizione pos = posizioneRepository.findById_IdAndId_Np(e.getPosizioneid(), e.getPosizionenp());
-            r.setPosizione(pos);
+        if(!(e.getPosizioneid() == null )) {
+            Slot s = slotRepository.findById(e.getPosizioneid(),e.getPosizionenp());
+            s.setOccupato(true);
+            r.setSlot(s);
         }
         if(!(e.getVenditadata()==null || e.getVenditanp() == null)){
             r.setVenditadata(e.getVenditadata());
@@ -86,10 +89,12 @@ public class EtichetteServices {
     }
     private EtichettaDTO mapper(Etichette e){
         EtichettaDTO r = new EtichettaDTO();
-        Posizione p = posizioneRepository.findById_IdAndId_Np(e.getPosizione(), e.getPosizioneNp());
-        if (p == null) {
+
+        Slot s = slotRepository.findSlotById(e.getSlot().getId());
+        if (s == null) {
             r.setPosizionetipo(null);
         } else {
+            Posizione p = posizioneRepository.findBy(s.getId().getPosId());
             r.setPosizionetipo(p.getTipo());
         }
         if (e.getProdotto() != null) {
@@ -101,8 +106,10 @@ public class EtichetteServices {
         r.setAbbattimento(e.getAbbattimento());
         r.setPeso(e.getPeso());
         r.setVenditanp(e.getVenditanp());
-        r.setPosizioneid(e.getPosizione());
-        r.setPosizionenp(e.getPosizioneNp());
+        if(s!=null){
+        r.setPosizionenp(s.getId().getNp());
+        r.setPosizioneid(s.getId().getPosId());
+        }
         r.setVenditadata(e.getVenditadata());
         if (e.getOrdineinuscita() != null) {
             r.setOrdineUscita(e.getOrdineinuscita().getId());
