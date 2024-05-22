@@ -39,7 +39,32 @@ public class EtichetteServices {
     }
     public Etichette addEtichetta(EtichettaDTO e){
         Etichette r = new Etichette();
+<<<<<<< Updated upstream
         Posizione pos = posizioneRepository.findById_IdAndId_Np(e.getPosizioneid(), e.getPosizionenp());
+=======
+        if(!(e.getPosizioneid() == null) ) {
+
+            r.setPosizione(e.getPosizioneid());
+        }
+        if(!(e.getVenditadata()==null || e.getVenditanp() == null)){
+            r.setVenditadata(e.getVenditadata());
+            r.setVenditanp(e.getVenditanp());
+        }
+        if (e.getOrdineUscita() != null) {
+            Optional<Ordineinuscita> ordineinuscita = ordineinuscitaRepository.findById(e.getOrdineUscita());
+            ordineinuscita.ifPresent(r::setOrdineinuscita);
+        }
+
+        if (e.getProdotto() != null) {
+            Optional<Prodotto> prodotto = prodottoRepository.findById(e.getProdotto());
+            prodotto.ifPresent(r::setProdotto);
+        }
+        if (e.getPrenotazione() != null) {
+            Optional<Cliente> cliente = clienteRepository.findById(e.getPrenotazione());
+            cliente.ifPresent(r::setPrenotazione);
+        }
+
+>>>>>>> Stashed changes
 
         r.setPosizione(pos);
 
@@ -68,12 +93,12 @@ public class EtichetteServices {
     }
     private EtichettaDTO mapper(Etichette e){
         EtichettaDTO r = new EtichettaDTO();
-        Posizione p = posizioneRepository.findById_IdAndId_Np(e.getPosizione(), e.getPosizioneNp());
-        if (p == null) {
-            r.setPosizionetipo(null);
-        } else {
-            r.setPosizionetipo(p.getTipo());
-        }
+        //Posizione p = posizioneRepository.findById_IdAndId_Np(e.getPosizione(), e.getPosizioneNp());
+//        if (p == null) {
+//            r.setPosizionetipo(null);
+//        } else {
+//            r.setPosizionetipo(p.getTipo());
+//        }
         if (e.getProdotto() != null) {
             r.setProdotto(e.getProdotto().getId());
         }
@@ -84,7 +109,7 @@ public class EtichetteServices {
         r.setPeso(e.getPeso());
         r.setVenditanp(e.getVenditanp());
         r.setPosizioneid(e.getPosizione());
-        r.setPosizionenp(e.getPosizioneNp());
+        //r.setPosizionenp(e.getPosizioneNp());
         r.setVenditadata(e.getVenditadata());
         if (e.getOrdineinuscita() != null) {
             r.setOrdineUscita(e.getOrdineinuscita().getId());

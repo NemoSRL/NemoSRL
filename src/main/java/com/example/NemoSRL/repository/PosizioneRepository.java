@@ -1,19 +1,22 @@
 package com.example.NemoSRL.repository;
 
-import com.example.NemoSRL.model.Etichette;
 import com.example.NemoSRL.model.Posizione;
-import com.example.NemoSRL.model.PosizioneId;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface PosizioneRepository extends JpaRepository<Posizione, PosizioneId> {
+public interface PosizioneRepository extends JpaRepository<Posizione, String> {
 
     List<Posizione> findAll();
+<<<<<<< Updated upstream
     Posizione findById_IdAndId_Np(String id, Integer np);
+=======
+    List<Posizione> findAllByOrderByIdAsc();
+    Optional<Posizione> findById(String id);
+>>>>>>> Stashed changes
 
     //List<Posizione> findById(int np);
     List<Posizione> findPosizioneByTipo(String tipo);

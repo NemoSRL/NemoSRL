@@ -22,8 +22,8 @@ public class PosizioneService {
 
     private PosizioneDTO convertToDTO(Posizione posizione) {
         PosizioneDTO dto = new PosizioneDTO();
-        dto.setId(posizione.getId().getId());
-        dto.setNp(posizione.getId().getNp());
+        dto.setId(posizione.getId());
+        //dto.setNp(posizione.getId().getNp());
         dto.setTipo(posizione.getTipo());
         dto.setSogliaminima(posizione.getSogliaminima());
         return dto;

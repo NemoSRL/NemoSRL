@@ -40,13 +40,14 @@ public class Etichette {
     private Cliente prenotazione;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    //@ManyToOne(fetch = FetchType.LAZY, optional = true)
     //@JsonBackReference
-    @JoinColumns({
-            @JoinColumn(name = "posizioneid", referencedColumnName = "id"),
-            @JoinColumn(name = "posizionenp", referencedColumnName = "np")
-    })
-    private Posizione posizione;
+//    @JoinColumns({
+//            @JoinColumn(name = "posizioneid", referencedColumnName = "id"),
+//            @JoinColumn(name = "posizionenp", referencedColumnName = "np")
+//    })
+
+    private String posizione;
 
     @Column(name = "venditanp")
     private Integer venditanp;
@@ -65,13 +66,17 @@ public class Etichette {
     @JsonIgnore
     @OneToMany(mappedBy = "etichetta")
     private Set<Report> reports = new LinkedHashSet<>();
-    @JsonProperty("posizioneid")
-    public String getPosizione(){
-        return (posizione != null) ? posizione.getId().getId() : null;
-    }
-    @JsonProperty("posizionenp")
-    public Integer getPosizioneNp(){
-        return (posizione != null) ? posizione.getId().getNp() : null;
-    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name = "slotid", referencedColumnName = "pos_id"),
+            @JoinColumn(name = "slotnp", referencedColumnName = "np")
+    })
+    private Slot slot;
+
+//    @JsonProperty("posizioneid")
+//    public String getPosizione(){
+//        return (posizione != null) ? posizione.getId() : null;
+//    }
 
 }
