@@ -28,17 +28,17 @@ public class SlotService {
     public SlotDTO showByid(String id,Integer np){
         return map(slotRepository.findById(id,np));
     }
-    public Slot addSlot(SlotDTO slot) throws Exception{
+    public SlotDTO addSlot(SlotDTO slot) throws Exception{
         Slot s = new Slot();
         SlotId sid = new SlotId();
         sid.setPosId(slot.getPosizione());
         sid.setNp(slot.getNp());
         s.setId(sid);
         s.setOccupato(slot.getOccupato());
-        Posizione p=posizioneRepository.findBy(slot.getPosizione());
+        Posizione p=posizioneRepository.findPosizioneById(slot.getPosizione());
         s.setPosizione(p);
         Slot result= slotRepository.save(s);
-        return result;
+        return map(result);
     }
     public void eliminaProdottoPerId(String s,Integer np){
         slotRepository.deleteById(s,np);

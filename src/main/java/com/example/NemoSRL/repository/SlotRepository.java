@@ -8,8 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SlotRepository extends JpaRepository<Slot, SlotId> {
-
-    public Slot findSlotByPosAndAndPosAndOccupato(String posizione,Integer np,Boolean occupato);
+    @Query("select s " +
+            "from Slot s " +
+            "where s.id.posId=?1 and s.id.np =?2 and s.occupato = ?3 ")
+    public Slot findSlotByOccupato(String posizione,Integer np,Boolean occupato);
+    @Query("select s " +
+            "from Slot s " +
+            "where s.id.posId=?1 and s.id.np =?2 ")
     public Slot findById(String pos,Integer np);
     public Slot findSlotById(SlotId id);
     @Query("select s " +
@@ -18,5 +23,8 @@ public interface SlotRepository extends JpaRepository<Slot, SlotId> {
             "(s.occupato = ?2 or ?2 is null )")
     public List<Slot> findOccupati(String id,Boolean occupato);
 
+    @Query("select s " +
+            "from Slot s " +
+            "where s.id.posId=?1 and s.id.np =?2 ")
     public void deleteById(String id,Integer np);
 }

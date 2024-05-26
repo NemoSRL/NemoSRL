@@ -20,14 +20,14 @@ public class Slot {
     @Column(name = "occupato")
     private Boolean occupato;
 
-    @ManyToOne(optional = false)
-    private Posizione posizione;
+//    @ManyToOne(optional = false)
+//    private Posizione posizione;
 
     public Posizione getPosizione() {
-        return posizione;
+        return pos;
     }
 
     public void setPosizione(Posizione posizione) {
-        this.posizione = posizione;
+        this.pos = posizione;
     }
 }

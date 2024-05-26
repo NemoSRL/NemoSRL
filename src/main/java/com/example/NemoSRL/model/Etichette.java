@@ -58,7 +58,7 @@ public class Etichette {
     })
     private Slot slot;
 
-    @OneToMany(mappedBy = "etichette")
+    @OneToMany(mappedBy = "etichetta")
     private Set<Report> reports = new LinkedHashSet<>();
 
 }

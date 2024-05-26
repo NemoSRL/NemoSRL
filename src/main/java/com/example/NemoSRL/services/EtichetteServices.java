@@ -94,7 +94,7 @@ public class EtichetteServices {
         if (s == null) {
             r.setPosizionetipo(null);
         } else {
-            Posizione p = posizioneRepository.findBy(s.getId().getPosId());
+            Posizione p = posizioneRepository.findPosizioneById(s.getId().getPosId());
             r.setPosizionetipo(p.getTipo());
         }
         if (e.getProdotto() != null) {

@@ -11,7 +11,7 @@ public interface PosizioneRepository extends JpaRepository<Posizione, String> {
 
     List<Posizione> findAll();
     List<Posizione> findAllByOrderByIdAsc();
-    Posizione findBy(String id);
+    Posizione findPosizioneById(String id);
 
     //List<Posizione> findById(int np);
     List<Posizione> findPosizioneByTipo(String tipo);

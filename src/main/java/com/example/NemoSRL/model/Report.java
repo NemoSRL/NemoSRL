@@ -37,4 +37,8 @@ public class Report {
     @JoinColumn(name = "personale")
     private Personale personale;
 
+//    @ManyToOne
+//    @JoinColumn(name = "etichette_codice")
+//    private Etichette etichette;
+
 }

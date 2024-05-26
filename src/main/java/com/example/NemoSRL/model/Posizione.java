@@ -23,7 +23,7 @@ public class Posizione {
     @Column(name = "sogliaminima")
     private Integer sogliaminima;
 
-    @OneToMany(mappedBy = "posizione")
+    @OneToMany(mappedBy = "pos")
     private Set<Slot> slots = new LinkedHashSet<>();
 
 }
