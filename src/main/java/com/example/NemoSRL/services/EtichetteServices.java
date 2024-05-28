@@ -65,7 +65,6 @@ public class EtichetteServices {
 
 
         r.setProdotto(prodottoRepository.findProdottoById(e.getProdotto()));
-        r.setId(e.getId());
         r.setDataarrivo(e.getDataarrivo());
         r.setDescrizione(e.getDescrizione());
         r.setAbbattimento(e.getAbbattimento());
