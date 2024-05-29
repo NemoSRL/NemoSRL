@@ -62,9 +62,12 @@ public class EtichetteServices {
             cliente.ifPresent(r::setPrenotazione);
         }
 
-
+        if(e.getId()!=null){
+            r.setId(e.getId());
+        } 
 
         r.setProdotto(prodottoRepository.findProdottoById(e.getProdotto()));
+
         r.setDataarrivo(e.getDataarrivo());
         r.setDescrizione(e.getDescrizione());
         r.setAbbattimento(e.getAbbattimento());
