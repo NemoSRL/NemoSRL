@@ -1,5 +1,6 @@
 package com.example.NemoSRL.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class Slot {
     @MapsId("posId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pos_id", nullable = false)
+    @JsonIgnore
     private Posizione pos;
 
     @Column(name = "occupato")
@@ -23,9 +25,9 @@ public class Slot {
 //    @ManyToOne(optional = false)
 //    private Posizione posizione;
 
-    public Posizione getPosizione() {
-        return pos;
-    }
+//    public Posizione getPosizione() {
+//        return pos;
+//    }
 
     public void setPosizione(Posizione posizione) {
         this.pos = posizione;

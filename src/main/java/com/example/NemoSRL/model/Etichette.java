@@ -1,6 +1,7 @@
 package com.example.NemoSRL.model;
 
 import com.example.NemoSRL.model.*;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,8 @@ import java.util.Set;
 @Table(name = "etichette", schema = "public")
 public class Etichette {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "etichetta_id_gen")
+    @SequenceGenerator(name = "etichetta_id_gen", sequenceName = "etichetta_sequence_col_name", allocationSize = 1)
     @Column(name = "codice", nullable = false)
     private Integer id;
 
@@ -56,6 +59,7 @@ public class Etichette {
             @JoinColumn(name = "slotid", referencedColumnName = "pos_id"),
             @JoinColumn(name = "slotnp", referencedColumnName = "np")
     })
+
     private Slot slot;
 
     @OneToMany(mappedBy = "etichetta")

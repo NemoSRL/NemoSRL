@@ -18,6 +18,7 @@ public class Posizione {
     private String id;
 
     @Column(name = "tipo", length = Integer.MAX_VALUE)
+
     private String tipo;
 
     @Column(name = "sogliaminima")
@@ -25,5 +26,4 @@ public class Posizione {
 
     @OneToMany(mappedBy = "pos")
     private Set<Slot> slots = new LinkedHashSet<>();
-
 }

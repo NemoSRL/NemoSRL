@@ -20,4 +20,6 @@ public class PosizioneController {
     public List<PosizioneDTO> getAll(){
         return posizioneService.getAllPosizioni();
     }
+    @GetMapping("/tipi")
+    public List<String> getAllTipi(){return posizioneService.getAlltipi();}
 }
