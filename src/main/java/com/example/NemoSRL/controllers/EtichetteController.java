@@ -27,13 +27,10 @@ public class EtichetteController {
     public List<EtichettaDTO> getAllAvanzato(@RequestParam(required = false)Integer id,
                                           @RequestParam(required = false)Integer prod_id,
                                           @RequestParam(required = false)String posizione,
-
-                                          @RequestParam(required = false)Integer ordine,
-                                          @RequestParam(required = false)Integer vendita,
                                              @RequestParam(required = false) Integer peso,
                                              @RequestParam(required = false) String descrizione,
                                              @RequestParam(required = false) String prenotazione){
-        return etichetteServices.showAvanzato(id,prod_id,posizione,ordine,vendita, peso, descrizione, prenotazione);
+        return etichetteServices.showAvanzato(id,prod_id,posizione, peso, descrizione, prenotazione);
     }
     @GetMapping("/ricercaPerData/{date}")
     public List<EtichettaDTO> ricercaPerData(@PathVariable LocalDate date){

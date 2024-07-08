@@ -27,15 +27,12 @@ public interface EtichetteRepository extends JpaRepository<Etichette, Integer> {
             "WHERE (e.id=?1 or ?1 is null ) and " +
             "(e.prodotto.id =?2 or ?2 is null ) and" +
             "(e.slot.id.posId like ?3 or ?3 is null ) and " +
-
-            "(e.ordineinuscita.id = ?4 or ?4 is null ) and" +
-            "(e.venditadata = ?5 or ?5 is null ) and"+
-            "(e.peso = ?6 or ?6 is null) and"+
-            "(e.descrizione = ?7 or ?7 is null) and"+
-            "(e.prenotazione = ?8 or ?8 is null)"
+            "(e.peso = ?4 or ?4 is null) and"+
+            "(e.descrizione = ?5 or ?5 is null) and"+
+            "(e.prenotazione = ?6 or ?6 is null)"
     )
     public List<Etichette> fidnAvanzato(Integer id, Integer prod_id, String posizione,
-                                        Integer ordine, Integer vendita, Integer peso, String descrizione, String prenotazione);
+                                        Integer peso, String descrizione, String prenotazione);
     public List<Etichette> findEtichettesByDataarrivo(LocalDate data);
     public void deleteById(Integer id);
     public Etichette findEtichetteById(Integer id);

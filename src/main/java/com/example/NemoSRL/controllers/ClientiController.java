@@ -16,11 +16,7 @@ import java.util.List;
 public class ClientiController {
     @Autowired
     private ClienteServices clienteServices;
-    @RequestMapping("/referenti")
-    @GetMapping
-    public List<String> getAllReferentiCf(){
-        return clienteServices.showAllReferentiCf();
-    }
+
     @GetMapping
     List<Cliente> getAllClienti(){
         return clienteServices.showAllClienti();

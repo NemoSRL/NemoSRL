@@ -26,15 +26,15 @@ public class Report {
     @JoinColumn(name = "etichetta", nullable = false)
     private Etichette etichetta;
 
-    @Column(name = "data")
+    @Column(name = "data", nullable = false)
     private LocalDate data;
 
-    @Column(name = "dettagli", length = Integer.MAX_VALUE)
+    @Column(name = "dettagli", length = Integer.MAX_VALUE, nullable = false)
     private String dettagli;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name = "personale")
+    @JoinColumn(name = "personale", nullable = false)
     private Personale personale;
 
 //    @ManyToOne

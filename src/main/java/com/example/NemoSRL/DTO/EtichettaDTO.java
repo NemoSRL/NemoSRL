@@ -14,12 +14,13 @@ public class EtichettaDTO {
     private Boolean abbattimento;
     private Double peso;
     private Integer prodotto;
-    private Integer venditanp;
-    private LocalDate venditadata;
-    private Integer ordineUscita;
     private Double scontoextra;
     private String posizioneid;
     private Integer posizionenp;
     private String posizionetipo;
+    private String posizioneluogo;
     private String prenotazione;
+
+    private String oldPosizioneId;
+    private Integer oldPosizioneNp;
 }

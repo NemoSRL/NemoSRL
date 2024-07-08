@@ -21,43 +21,38 @@ public class Etichette {
     @Column(name = "codice", nullable = false)
     private Integer id;
 
-    @Column(name = "abbattimento")
+    @Column(name = "abbattimento", nullable = false)
     private Boolean abbattimento;
 
-    @Column(name = "dataarrivo")
+    @Column(name = "dataarrivo", nullable = false)
     private LocalDate dataarrivo;
 
-    @Column(name = "peso")
+    @Column(name = "peso", nullable = false)
     private Double peso;
 
-    @Column(name = "scontoextra")
+    @Column(name = "scontoextra", nullable = false)
     private Double scontoextra;
 
-    @Column(name = "descrizione", length = Integer.MAX_VALUE)
+    @Column(name = "descrizione", length = Integer.MAX_VALUE, nullable = false)
     private String descrizione;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prenotazione")
     private Cliente prenotazione;
 
-    @Column(name = "venditanp")
-    private Integer venditanp;
 
-    @Column(name = "venditadata")
-    private LocalDate venditadata;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ordineinuscita")
-    private Ordineinuscita ordineinuscita;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prodotto")
+    @JoinColumn(name = "prodotto", nullable = false)
     private Prodotto prodotto;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns({
-            @JoinColumn(name = "slotid", referencedColumnName = "pos_id"),
-            @JoinColumn(name = "slotnp", referencedColumnName = "np")
+            @JoinColumn(name = "slotid", referencedColumnName = "pos_id", nullable = false),
+            @JoinColumn(name = "slotnp", referencedColumnName = "np", nullable = false)
     })
 
     private Slot slot;

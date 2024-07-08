@@ -15,16 +15,16 @@ public class Prodotto {
     @Column(name = "codice", nullable = false)
     private Integer id;
 
-    @Column(name = "nome", length = Integer.MAX_VALUE)
+    @Column(name = "nome", length = Integer.MAX_VALUE, nullable = false)
     private String nome;
 
-    @Column(name = "sogliaminima")
+    @Column(name = "sogliaminima", nullable = false)
     private Double sogliaminima;
 
-    @Column(name = "quantita")
+    @Column(name = "quantita", nullable = false)
     private Double quantita;
 
-    @Column(name = "qualita", length = Integer.MAX_VALUE)
+    @Column(name = "qualita", length = Integer.MAX_VALUE, nullable = false)
     private String qualita;
 
 }
