@@ -28,11 +28,10 @@ public interface EtichetteRepository extends JpaRepository<Etichette, Integer> {
             "(e.prodotto.id =?2 or ?2 is null ) and" +
             "(e.slot.id.posId like ?3 or ?3 is null ) and " +
             "(e.peso = ?4 or ?4 is null) and"+
-            "(e.descrizione = ?5 or ?5 is null) and"+
-            "(e.prenotazione = ?6 or ?6 is null)"
+            "(e.descrizione = ?5 or ?5 is null)"
     )
     public List<Etichette> fidnAvanzato(Integer id, Integer prod_id, String posizione,
-                                        Integer peso, String descrizione, String prenotazione);
+                                        Integer peso, String descrizione);
     public List<Etichette> findEtichettesByDataarrivo(LocalDate data);
     public void deleteById(Integer id);
     public Etichette findEtichetteById(Integer id);

@@ -28,9 +28,9 @@ public class EtichetteController {
                                           @RequestParam(required = false)Integer prod_id,
                                           @RequestParam(required = false)String posizione,
                                              @RequestParam(required = false) Integer peso,
-                                             @RequestParam(required = false) String descrizione,
-                                             @RequestParam(required = false) String prenotazione){
-        return etichetteServices.showAvanzato(id,prod_id,posizione, peso, descrizione, prenotazione);
+                                             @RequestParam(required = false) String descrizione
+                                             ){
+        return etichetteServices.showAvanzato(id,prod_id,posizione, peso, descrizione);
     }
     @GetMapping("/ricercaPerData/{date}")
     public List<EtichettaDTO> ricercaPerData(@PathVariable LocalDate date){

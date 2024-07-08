@@ -29,8 +29,8 @@ public class EtichetteServices {
     public List<Etichette> showAllEtichets(){
          return etichetteRepository.findAll();
     }
-    public List<EtichettaDTO> showAvanzato(Integer id, Integer prod_id, String posizione, Integer peso, String descrizione, String prenotazione){
-       return etichetteRepository.fidnAvanzato(id,prod_id,posizione, peso, descrizione, prenotazione).stream().map(this::mapper).collect(Collectors.toList());
+    public List<EtichettaDTO> showAvanzato(Integer id, Integer prod_id, String posizione, Integer peso, String descrizione){
+       return etichetteRepository.fidnAvanzato(id,prod_id,posizione, peso, descrizione).stream().map(this::mapper).collect(Collectors.toList());
     }
     public void elimina(Integer id){
         etichetteRepository.deleteById(id);
@@ -49,10 +49,7 @@ public class EtichetteServices {
             Optional<Prodotto> prodotto = prodottoRepository.findById(e.getProdotto());
             prodotto.ifPresent(r::setProdotto);
         }
-        if (e.getPrenotazione() != null) {
-            Optional<Cliente> cliente = clienteRepository.findById(e.getPrenotazione());
-            cliente.ifPresent(r::setPrenotazione);
-        }
+
 
 
 

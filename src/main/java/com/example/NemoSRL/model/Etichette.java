@@ -36,11 +36,6 @@ public class Etichette {
     @Column(name = "descrizione", length = Integer.MAX_VALUE, nullable = false)
     private String descrizione;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prenotazione")
-    private Cliente prenotazione;
-
-
 
 
 
