@@ -28,4 +28,7 @@ public class PosizioneService {
         dto.setSogliaminima(posizione.getSogliaminima());
         return dto;
     }
+    public List<String> getAlltipi(){
+        return posizioneRepository.findAllByTipo();
+    }
 }
