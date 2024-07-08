@@ -21,8 +21,7 @@ public class EtichetteServices {
     private SlotRepository slotRepository;
     @Autowired
     private ProdottoRepository prodottoRepository;
-    @Autowired
-    private ClienteRepository clienteRepository;
+
     @Autowired
     private PosizioneRepository posizioneRepository;
 
@@ -37,6 +36,10 @@ public class EtichetteServices {
     }
     public Etichette addEtichetta(EtichettaDTO e){
         Etichette r = new Etichette();
+        if(!e.getPosizioneid().equals(e.getOldPosizioneId()) && !e.getPosizionenp().equals(e.getOldPosizioneNp())){
+            Slot oldSlot=slotRepository.findById(e.getOldPosizioneId(),e.getOldPosizioneNp());
+            oldSlot.setOccupato(false);
+        }
         if(!(e.getPosizioneid() == null )) {
             Slot s = slotRepository.findById(e.getPosizioneid(),e.getPosizionenp());
             s.setOccupato(true);
@@ -83,6 +86,8 @@ public class EtichetteServices {
         } else {
             Posizione p = posizioneRepository.findPosizioneById(s.getId().getPosId());
             r.setPosizionetipo(p.getTipo());
+            r.setPosizioneluogo(p.getLuogo());
+            r.setPosizioneid(p.getId());
         }
         if (e.getProdotto() != null) {
             r.setProdotto(e.getProdotto().getId());

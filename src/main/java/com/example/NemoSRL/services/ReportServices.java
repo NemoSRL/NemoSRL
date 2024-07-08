@@ -85,6 +85,8 @@ public class ReportServices {
             report.setId(reportId);
             report.setData(reportDTO.getData());
             report.setDettagli(reportDTO.getDettagli());
+            report.setTipo(reportDTO.getTipo());
+            report.setSpostato(reportDTO.getSpostato());
 
             if (reportDTO.getEtichetta() != null) {
                 Optional<Etichette> etichette = etichetteRepository.findById(reportDTO.getEtichetta());
@@ -106,6 +108,8 @@ public class ReportServices {
         ret.setPersonale(r.getPersonale().getCf());
         ret.setNp(r.getId().getNp());
         ret.setEtichetta(r.getEtichetta().getId());
+        ret.setSpostato(r.getSpostato());
+        ret.setTipo(r.getTipo());
         return ret;
     }
     private Integer generateNewId(Integer e){

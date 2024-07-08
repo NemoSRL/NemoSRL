@@ -40,6 +40,7 @@ public class SlotService {
         Slot result= slotRepository.save(s);
         return map(result);
     }
+
     public void eliminaProdottoPerId(String s,Integer np){
         slotRepository.deleteById(s,np);
     }

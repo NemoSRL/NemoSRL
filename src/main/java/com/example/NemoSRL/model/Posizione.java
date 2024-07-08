@@ -23,6 +23,8 @@ public class Posizione {
 
     @Column(name = "sogliaminima")
     private Integer sogliaminima;
+    @Column(name = "luogo")
+    private String luogo;
 
     @OneToMany(mappedBy = "pos")
     private Set<Slot> slots = new LinkedHashSet<>();

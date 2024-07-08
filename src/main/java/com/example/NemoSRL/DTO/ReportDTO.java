@@ -17,5 +17,5 @@ public class ReportDTO {
     private String personale;
     private Integer oldEtichetta;
     private String tipo;
-    private boolean spostato;
+    private Boolean spostato;
 }

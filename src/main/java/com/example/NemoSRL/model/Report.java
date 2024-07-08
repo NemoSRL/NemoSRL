@@ -36,6 +36,10 @@ public class Report {
     @JsonIgnore
     @JoinColumn(name = "personale", nullable = false)
     private Personale personale;
+    @Column(name = "tipo")
+    private String tipo;
+    @Column(name = "spostato")
+    private Boolean spostato;
 
 //    @ManyToOne
 //    @JoinColumn(name = "etichette_codice")
