@@ -36,7 +36,8 @@ public class ReportServices {
     public Report addReport(ReportDTO reportDTO) throws Exception{
         ReportId reportId = new ReportId();
         reportId.setEtichetta(reportDTO.getEtichetta());
-        reportId.setNp(generateNewId(reportDTO.getEtichetta()));
+        int generatedNp = generateNewId(reportDTO.getEtichetta());
+        reportId.setNp(generatedNp);
         Report report = new Report();
         report.setId(reportId);
         report.setData(reportDTO.getData());
@@ -69,19 +70,23 @@ public class ReportServices {
 
 
 
-    public Report updateReport(ReportDTO reportDTO) {
+    public Report updateReport(ReportDTO reportDTO) throws Exception {
+
+        return addReport(reportDTO);/*
             ReportId reportId = new ReportId();
             reportId.setNp(reportDTO.getNp());
             reportId.setEtichetta(reportDTO.getOldEtichetta());
 
 
 
-            Report report = new Report();
+
             if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta() ){
-                reportRepository.deleteById(reportId);
-                reportId.setNp(generateNewId(reportDTO.getEtichetta()));
+
+                int generatedNp = generateNewId(reportDTO.getEtichetta());
+                reportId.setNp(generatedNp);
                 reportId.setEtichetta(reportDTO.getEtichetta());
             }
+            Report report = new Report();
             report.setId(reportId);
             report.setData(reportDTO.getData());
             report.setDettagli(reportDTO.getDettagli());
@@ -97,8 +102,8 @@ public class ReportServices {
                 Optional<Personale> personale = personaleRepository.findById(reportDTO.getPersonale());
                 personale.ifPresent(report::setPersonale);
             }
-
-            return reportRepository.save(report);
+            reportRepository.deleteById(reportId);
+            return reportRepository.save(report);*/
 
     }
     private ReportDTO map(Report r){
@@ -115,6 +120,8 @@ public class ReportServices {
     private Integer generateNewId(Integer e){
 
         Integer np = reportRepository.findMaxNpByEtichetta(e)+1;
+        System.out.println(np);
+        if(np==null) np=1;
         return np;
     }
 }
