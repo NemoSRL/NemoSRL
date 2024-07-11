@@ -19,7 +19,7 @@ public interface SlotRepository extends JpaRepository<Slot, SlotId> {
     public Slot findSlotById(SlotId id);
     @Query("select s " +
             "from Slot s " +
-            "WHERE (s.id.posId like ?1 or ?1 is null) and " +
+            "WHERE (LOWER(s.id.posId) like LOWER( concat('%',?1,'%') ) or ?1 is null) and " +
             "(s.occupato = ?2 or ?2 is null )")
     public List<Slot> findOccupati(String id,Boolean occupato);
 

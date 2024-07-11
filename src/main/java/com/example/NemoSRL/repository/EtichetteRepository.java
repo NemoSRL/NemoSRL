@@ -26,9 +26,9 @@ public interface EtichetteRepository extends JpaRepository<Etichette, Integer> {
             "from Etichette e " +
             "WHERE (e.id=?1 or ?1 is null ) and " +
             "(e.prodotto.id =?2 or ?2 is null ) and" +
-            "(e.slot.id.posId like ?3 or ?3 is null ) and " +
+            "(LOWER(e.slot.id.posId) like LOWER( concat('%',?3,'%') ) or ?3 is null ) and " +
             "(e.peso = ?4 or ?4 is null) and"+
-            "(e.descrizione = ?5 or ?5 is null)"
+            "(LOWER(e.descrizione) like LOWER( concat('%',?5,'%') ) or ?5 is null)"
     )
     public List<Etichette> fidnAvanzato(Integer id, Integer prod_id, String posizione,
                                         Integer peso, String descrizione);

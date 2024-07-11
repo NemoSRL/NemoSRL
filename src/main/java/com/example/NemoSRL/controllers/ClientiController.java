@@ -18,7 +18,7 @@ public class ClientiController {
     private ClienteServices clienteServices;
 
     @GetMapping
-    List<Cliente> getAllClienti(){
+    List<Cliente> getAllClienti() {
         return clienteServices.showAllClienti();
     }
 }
