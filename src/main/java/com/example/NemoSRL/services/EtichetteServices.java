@@ -36,7 +36,7 @@ public class EtichetteServices {
     }
     public Etichette addEtichetta(EtichettaDTO e){
         Etichette r = new Etichette();
-        if(!e.getPosizioneid().equals(e.getOldPosizioneId()) && !e.getPosizionenp().equals(e.getOldPosizioneNp())){
+        if(!e.getPosizioneid().equals(e.getOldPosizioneId()) || !e.getPosizionenp().equals(e.getOldPosizioneNp())){
             Slot oldSlot=slotRepository.findById(e.getOldPosizioneId(),e.getOldPosizioneNp());
             oldSlot.setOccupato(false);
         }

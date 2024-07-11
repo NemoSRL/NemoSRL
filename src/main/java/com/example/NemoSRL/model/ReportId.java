@@ -2,6 +2,8 @@ package com.example.NemoSRL.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +20,7 @@ import java.util.Objects;
 public class ReportId implements Serializable {
     private static final long serialVersionUID = -1904614981309198374L;
     @ColumnDefault("nextval('report_np_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "np", nullable = false)
     private Integer np;
 
