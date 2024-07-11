@@ -107,7 +107,7 @@ public class ReportServices {
         if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta())//mi prende in giro ci vole nuovo report
             return addReport(reportDTO);
         ReportId reportId = new ReportId();
-        reportId.setNp(generateNewId(reportDTO.getEtichetta()));//non mi imbroglia
+        reportId.setNp(generateNewId(reportDTO.getEtichetta())-1);//non mi imbroglia
         reportId.setEtichetta(reportDTO.getEtichetta());
         Report report = new Report();
         report.setId(reportId);
