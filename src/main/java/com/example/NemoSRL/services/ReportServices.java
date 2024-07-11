@@ -72,49 +72,7 @@ public class ReportServices {
 
     public Report updateReport(ReportDTO reportDTO) throws Exception {
 
-        /*return addReport(reportDTO);
-            ReportId reportId = new ReportId();
-            reportId.setNp(reportDTO.getNp());//
-            reportId.setEtichetta(reportDTO.getOldEtichetta());
-
-
-
-
-            if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta() ){
-
-                int generatedNp = generateNewId(reportDTO.getEtichetta());
-                reportId.setNp(generatedNp);
-                reportId.setEtichetta(reportDTO.getEtichetta());
-            }
-            Report report = new Report();
-            report.setId(reportId);
-            report.setData(reportDTO.getData());
-            report.setDettagli(reportDTO.getDettagli());
-            report.setTipo(reportDTO.getTipo());
-            report.setSpostato(reportDTO.getSpostato());
-
-            if (reportDTO.getEtichetta() != null) {
-                Optional<Etichette> etichette = etichetteRepository.findById(reportDTO.getEtichetta());
-                etichette.ifPresent(report::setEtichetta);
-            }
-
-            if (reportDTO.getPersonale() != null) {
-                Optional<Personale> personale = personaleRepository.findById(reportDTO.getPersonale());
-                personale.ifPresent(report::setPersonale);
-            }
-            //reportRepository.deleteById(reportId);
-            return reportRepository.save(report);*/
-        if(reportDTO.getEtichetta()!= reportDTO.getOldEtichetta())//mi prende in giro ci vole nuovo report
-            return addReport(reportDTO);
-        ReportId reportId = new ReportId();
-        reportId.setNp(generateNewId(reportDTO.getEtichetta())-1);//non mi imbroglia
-        reportId.setEtichetta(reportDTO.getEtichetta());
-        Report report = new Report();
-        report.setId(reportId);
-        report.setData(reportDTO.getData());
-        report.setDettagli(reportDTO.getDettagli());
-        report.setTipo(reportDTO.getTipo());
-        report.setSpostato(reportDTO.getSpostato());
+        Report report = reportRepository.findById(reportDTO.getNp(), reportDTO.getEtichetta());
 
         if (reportDTO.getEtichetta() != null) {
             Optional<Etichette> etichette = etichetteRepository.findById(reportDTO.getEtichetta());
@@ -125,8 +83,10 @@ public class ReportServices {
             Optional<Personale> personale = personaleRepository.findById(reportDTO.getPersonale());
             personale.ifPresent(report::setPersonale);
         }
-
-
+        report.setSpostato(reportDTO.getSpostato());
+        report.setTipo(reportDTO.getTipo());
+        report.setData(reportDTO.getData());
+        report.setDettagli(reportDTO.getDettagli());
         return reportRepository.save(report);
     }
     private ReportDTO map(Report r){

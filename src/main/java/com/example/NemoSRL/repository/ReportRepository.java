@@ -30,6 +30,10 @@ public interface ReportRepository extends JpaRepository<Report, ReportId> {
     public  List<Report> findReportByData(LocalDate date);
     @Query("SELECT MAX(r.id.np) FROM Report r WHERE r.id.etichetta = ?1")
     Integer findMaxNpByEtichetta( Integer etichetta);
+    @Query("select r " +
+            "from Report r " +
+            "where r.id.np=?1 and r.id.etichetta=?2 ")
+    Report findById(Integer np,Integer etichetta);
 
     @Override
     void deleteById(ReportId reportId);
