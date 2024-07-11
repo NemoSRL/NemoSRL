@@ -20,7 +20,6 @@ import java.util.Objects;
 public class ReportId implements Serializable {
     private static final long serialVersionUID = -1904614981309198374L;
     @ColumnDefault("nextval('report_np_seq'::regclass)")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "np", nullable = false)
     private Integer np;
 

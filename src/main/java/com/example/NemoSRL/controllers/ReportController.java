@@ -47,6 +47,7 @@ public class ReportController {
         try {
             return new ResponseEntity<>(reportServices.addReport(report), HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore", e);
         }
     }

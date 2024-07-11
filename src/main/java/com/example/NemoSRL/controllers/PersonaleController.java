@@ -21,7 +21,7 @@ public class PersonaleController {
 
     }
     @GetMapping("{id}")
-    public Personale getPersonale(@PathVariable int id) {
-        //implementa e ritornami PersonaleDTO pls
+    public Personale getPersonale(@PathVariable String id) {
+        return personaleService.getByid(id);//codice fiscale
     }
 }

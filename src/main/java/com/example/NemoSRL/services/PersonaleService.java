@@ -12,4 +12,7 @@ public class PersonaleService {
     @Autowired
     PersonaleRepository personaleRepository;
     public List<Personale> getAll() {return personaleRepository.findAllByOrderByCfAsc();}
+    public Personale getByid(String id){
+        return personaleRepository.findByCf(id);
+    }
 }

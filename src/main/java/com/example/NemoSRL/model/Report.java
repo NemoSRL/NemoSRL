@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "report")
 public class Report {
-    @SequenceGenerator(name = "report_id_gen", sequenceName = "qualità_column_name_seq", allocationSize = 1)
+    //@SequenceGenerator(name = "report_id_gen", sequenceName = "qualità_column_name_seq", allocationSize = 1)
     @EmbeddedId
     @JsonUnwrapped
     private ReportId id;
