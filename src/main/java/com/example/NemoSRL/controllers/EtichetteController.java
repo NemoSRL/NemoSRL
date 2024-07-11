@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -33,8 +34,9 @@ public class EtichetteController {
         return etichetteServices.showAvanzato(id,prod_id,posizione, peso, descrizione);
     }
     @GetMapping("/ricercaPerData/{date}")
-    public List<EtichettaDTO> ricercaPerData(@PathVariable LocalDate date){
-        return etichetteServices.ricercaPerData(date);
+    public List<EtichettaDTO> ricercaPerData(@PathVariable String date){
+
+        return etichetteServices.ricercaPerData(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity eliminaEtichetta(@PathVariable int id){

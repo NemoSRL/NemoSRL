@@ -14,8 +14,8 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
     public void deleteById(int id);
     @Query("select p "+
             "from Prodotto p "+
-            "WHERE (LOWER(p.nome) like LOWER( concat('%',?1,'%') ) Or ?1 is NULL) and "+
-            "(LOWER(p.qualita ) like LOWER( concat('%',?2,'%') ) or ?2 is null) and" +
+            "WHERE (LOWER(p.nome) like LOWER( concat(?1,'%') ) Or ?1 is NULL) and "+
+            "(LOWER(p.qualita ) like LOWER( concat(?2,'%') ) or ?2 is null) and" +
             "(p.id = ?3 or ?3 is null ) and" +
             "(p.quantita = ?4 or ?4 is null) and "+
             "(p.sogliaminima=?5 or ?5 is null)"

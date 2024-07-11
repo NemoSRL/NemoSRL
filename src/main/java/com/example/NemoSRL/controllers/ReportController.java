@@ -8,6 +8,7 @@ import com.example.NemoSRL.repository.ProdottoRepository;
 import com.example.NemoSRL.services.ReportServices;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -73,8 +75,9 @@ public class ReportController {
     }
     @CrossOrigin
     @GetMapping("/ricercaPer/{data}")
-    public List<ReportDTO> recercaPerData(@PathVariable LocalDate data){
-        return reportServices.ricercaPerData(data);
+    public List<ReportDTO> recercaPerData(@PathVariable String date){
+
+        return reportServices.ricercaPerData(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
 
 }

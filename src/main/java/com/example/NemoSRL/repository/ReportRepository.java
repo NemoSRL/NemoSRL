@@ -15,8 +15,8 @@ public interface ReportRepository extends JpaRepository<Report, ReportId> {
     public void deleteById_NpOrId_Etichetta(Integer id_np,Integer etichetta_id);
     @Query("select r "+
             "from  Report r "+
-            "WHERE ( LOWER(r.personale.cf) like LOWER( concat('%',?1,'%') ) Or ?1 is NULL) and "+
-            "(LOWER(r.dettagli) like LOWER( concat('%',?2,'%') ) or ?2 is null) and" +
+            "WHERE ( LOWER(r.personale.cf) like LOWER( concat(?1,'%') ) Or ?1 is NULL) and "+
+            "(LOWER(r.dettagli) like LOWER( concat(?2,'%') ) or ?2 is null) and" +
             "(r.id.np = ?3 or ?3 is null ) and " +
             "(r.id.etichetta=?4 or ?4 is null )"
     )
