@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/report")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReportController {
     @Autowired
     private ReportServices reportServices;
@@ -74,7 +74,7 @@ public class ReportController {
         }
     }
     @CrossOrigin
-    @GetMapping("/ricercaPer/{data}")
+    @GetMapping("/ricercaPer/{date}")
     public List<ReportDTO> recercaPerData(@PathVariable String date){
 
         return reportServices.ricercaPerData(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd-MM-yyyy")));

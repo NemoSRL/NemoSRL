@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/etichette")
 public class EtichetteController {
     @Autowired
@@ -38,7 +38,9 @@ public class EtichetteController {
 
         return etichetteServices.ricercaPerData(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
-    @DeleteMapping("/{id}")
+
+    @RequestMapping("/{id}")
+    @DeleteMapping
     public ResponseEntity eliminaEtichetta(@PathVariable int id){
         try{
             etichetteServices.elimina(id);
