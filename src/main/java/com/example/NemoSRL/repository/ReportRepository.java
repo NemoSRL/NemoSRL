@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface ReportRepository extends JpaRepository<Report, ReportId> {
     public List<Report> findAllByOrderByIdAsc();
-    public void deleteById_NpOrId_Etichetta(Integer id_np,Integer etichetta_id);
+    //public void deleteById_NpAndId_Etichetta(Integer id_np,Integer etichetta_id);
     @Query("select r "+
             "from  Report r "+
             "WHERE ( LOWER(r.personale.cf) like LOWER( concat(?1,'%') ) Or ?1 is NULL) and "+

@@ -54,7 +54,7 @@ public class ReportController {
         }
     }
 
-    @DeleteMapping("/elimina")
+    //@DeleteMapping("/elimina")
 //    public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id, @RequestParam(name = "Etichetta") Integer etichetta) {
 //        try {
 //            reportServices.eliminaReportPerId(id, etichetta);
@@ -63,8 +63,8 @@ public class ReportController {
 //            return ResponseEntity.notFound().build();
 //        }
 //    }
-    @GetMapping("elimina")
-    public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id, @RequestParam(name = "Etichetta") Integer etichetta) {
+    @GetMapping("/elimina")
+    public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id, @RequestParam(name = "etichetta") Integer etichetta) {
         try {
             reportServices.eliminaReportPerId(id, etichetta);
             return ResponseEntity.noContent().build();

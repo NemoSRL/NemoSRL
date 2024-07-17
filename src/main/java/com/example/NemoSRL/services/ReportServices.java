@@ -58,8 +58,9 @@ public class ReportServices {
     public List<ReportDTO> ricercaPerData(LocalDate data){
         return reportRepository.findReportByData(data).stream().map(this::map).collect(Collectors.toList());
     }
-    public void eliminaReportPerId(Integer ip,Integer etichetta_id){
-        reportRepository.deleteById_NpOrId_Etichetta(ip,etichetta_id);
+    public void eliminaReportPerId(Integer np,Integer etichetta_id){
+        Report e = reportRepository.findById(np,etichetta_id);
+        reportRepository.delete(e);
     }
     public List<Report> showAllAvanzato(String cf_personale,String dettagli,Integer np,Integer etichetta){
         return reportRepository.ricercaAvanzata(cf_personale,dettagli,np,etichetta);
