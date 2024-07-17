@@ -38,9 +38,7 @@ public class EtichetteController {
 
         return etichetteServices.ricercaPerData(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd-MM-yyyy")));
     }
-
-    @RequestMapping("/{id}")
-    @DeleteMapping
+    @GetMapping("/elimina/{id}")
     public ResponseEntity eliminaEtichetta(@PathVariable int id){
         try{
             etichetteServices.elimina(id);
@@ -49,6 +47,17 @@ public class EtichetteController {
             return ResponseEntity.notFound().build();
         }
     }
+
+//    @RequestMapping("/{id}")
+//    @DeleteMapping
+//    public ResponseEntity eliminaEtichetta(@PathVariable int id){
+//        try{
+//            etichetteServices.elimina(id);
+//            return ResponseEntity.noContent().build();
+//        }catch (EntityNotFoundException e){
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
     @GetMapping("/{id}")
     public EtichettaDTO ricercaPerId(@PathVariable Integer id){
         return etichetteServices.showEtichettaById(id);

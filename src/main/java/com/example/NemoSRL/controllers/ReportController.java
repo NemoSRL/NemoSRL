@@ -55,6 +55,15 @@ public class ReportController {
     }
 
     @DeleteMapping("/elimina")
+//    public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id, @RequestParam(name = "Etichetta") Integer etichetta) {
+//        try {
+//            reportServices.eliminaReportPerId(id, etichetta);
+//            return ResponseEntity.noContent().build();
+//        } catch (EntityNotFoundException e) {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+    @GetMapping("elimina")
     public ResponseEntity eliminaReport(@RequestParam(name = "id") Integer id, @RequestParam(name = "Etichetta") Integer etichetta) {
         try {
             reportServices.eliminaReportPerId(id, etichetta);
