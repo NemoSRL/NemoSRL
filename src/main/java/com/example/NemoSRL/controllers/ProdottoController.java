@@ -40,9 +40,8 @@ public class ProdottoController {
         }
     }
 
-    @RequestMapping("/{id}")
-    @DeleteMapping
 
+    @GetMapping("/elimina/{id}")
     public ResponseEntity eliminaProdotto(@PathVariable int id){
         try{
             prodottoServices.eliminaProdottoPerId(id);
